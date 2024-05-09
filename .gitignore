@@ -73,6 +73,10 @@ yarn-error.log
 !.yarn/sdks
 !.yarn/versions
 
+#App specific
+/test-reports
+
+#Sonar
 .scannerwork
 coverage.out
 /sonar-project.properties
