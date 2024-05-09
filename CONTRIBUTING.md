@@ -4,7 +4,7 @@
 
 ## Steps to setup SonarQube locally
 
-- Ensure that the sonarqube and sonarqube-database containers are up.
+- Ensure that the `sonarqube` and `sonarqube-database` containers are up.
 - Hit [this link](http://localhost:9000/)
 - Create a new local project named `Airport_frontend` with project key as `Airport_frontend`
 - Change `main` to `master` ![Image](Images/LocalProject.png)
