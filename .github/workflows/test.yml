@@ -42,4 +42,4 @@ jobs:
           clean: true
 
       - name: URL for test report
-        run: echo "https://sathyarupa.github.io/airport-app-frontend/test-reports/" + ${{github.sha}} + "/" + ${{github.run_id}} + "/" + ${{github.run_attempt}} + test-report.html
+        run: echo "[TEST REPORT](https://sathyarupa.github.io/airport-app-frontend/test-reports/${{github.sha}}/${{github.run_id}}/${{github.run_attempt}}/test-report.html)"
