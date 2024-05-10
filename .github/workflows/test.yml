@@ -51,9 +51,6 @@ jobs:
         run: |
           snapshot_link=$(snyk monitor --all-projects | grep "Explore this snapshot at" | sed 's/Explore this snapshot at //')
           echo "[Snyk Monitor link]($snapshot_link)" >> $GITHUB_STEP_SUMMARY
-<<<<<<< HEAD
-=======
-
 
       - name: Publish Test Report
         uses: JamesIves/github-pages-deploy-action@4.1.4
