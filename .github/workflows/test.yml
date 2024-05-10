@@ -45,7 +45,8 @@ jobs:
       - name: Run Snyk security scan
         run: |
           snyk auth ${{ secrets.SNYK_TOKEN }}
-          snyk test
+          snyk test --all-projects
+
       - name: Run Snyk Monitor
         run: |
           snapshot_link=$(snyk monitor --all-projects | grep "Explore this snapshot at" | sed 's/Explore this snapshot at //')
