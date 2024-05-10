@@ -1,6 +1,10 @@
 # Created by https://www.toptal.com/developers/gitignore/api/visualstudio,reactnative,react,git,ruby,yarn,node,xcode,android,intellij,fastlane
 # Edit at https://www.toptal.com/developers/gitignore?templates=visualstudio,reactnative,react,git,ruby,yarn,node,xcode,android,intellij,fastlane
 
+# OSX
+#
+.DS_Store
+
 ### Android ###
 # Gradle files
 .gradle/
@@ -11,6 +15,26 @@ local.properties
 
 # Log/OS Files
 *.log
+
+# Xcode
+#
+build/
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+xcuserdata
+*.xccheckout
+*.moved-aside
+DerivedData
+*.hmap
+*.ipa
+*.xcuserstate
+**/.xcode.env.local
 
 # Android Studio generated files and folders
 captures/
@@ -25,6 +49,12 @@ output.json
 misc.xml
 deploymentTargetDropDown.xml
 render.experimental.xml
+local.properties
+*.iml
+*.hprof
+.cxx/
+*.keystore
+!debug.keystore
 
 # Keystore files
 *.jks
@@ -38,6 +68,12 @@ google-services.json
 
 ### Android Patch ###
 gen-external-apklibs
+
+# node.js
+#
+node_modules/
+npm-debug.log
+yarn-error.log
 
 # Replacement of .externalNativeBuild directories introduced
 # with Android Studio 3.5.
@@ -110,18 +146,19 @@ gen-external-apklibs
 .idea/**/gradle.xml
 .idea/**/libraries
 
-# Gradle and Maven with auto-import
-# When using Gradle or Maven with auto-import, you should exclude module files,
-# since they will be recreated, and may cause churn.  Uncomment if using
-# auto-import.
-# .idea/artifacts
-# .idea/compiler.xml
-# .idea/jarRepositories.xml
-# .idea/modules.xml
-# .idea/*.iml
-# .idea/modules
-# *.iml
-# *.ipr
+# Temporary files created by Metro to check the health of the file watcher
+.metro-health-check*
+
+# testing
+/coverage
+
+# Yarn
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
 
 # CMake
 cmake-build-*/
