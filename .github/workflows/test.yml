@@ -37,4 +37,6 @@ jobs:
         with:
           branch: gh-pages
           folder: test-reports
+          target-folder: test-reports/${{github.sha}}/${{github.run_id}}/${{github.run_attempt}}
+          force: false
           clean: true
