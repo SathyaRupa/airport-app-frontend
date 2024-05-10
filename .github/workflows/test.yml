@@ -40,3 +40,6 @@ jobs:
           target-folder: test-reports/${{github.sha}}/${{github.run_id}}/${{github.run_attempt}}
           force: false
           clean: true
+
+      - name: URL for test report
+        run: echo "https://sathyarupa.github.io/airport-app-frontend/test-reports/" + ${{github.sha}} + "/" + ${{github.run_id}} + "/" + ${{github.run_attempt}}
