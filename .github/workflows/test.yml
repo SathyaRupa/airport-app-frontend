@@ -45,9 +45,8 @@ jobs:
       - name: Run Snyk security scan
         run: |
           snyk auth ${{ secrets.SNYK_TOKEN }}
-          snyk ignore --id=SNYK-JS-INFLIGHT-6095116
-          snyk ignore --id=SNYK-JAVA-ORGJETBRAINSKOTLIN-2393744
-          snyk ignore --id=SNYK-JS-INFLIGHT-6095116
+          snyk ignore SNYK-JS-INFLIGHT-6095116
+          snyk ignore SNYK-JAVA-ORGJETBRAINSKOTLIN-2393744
           snyk test --all-projects
 
       - name: Run Snyk Monitor
