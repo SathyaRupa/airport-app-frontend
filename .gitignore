@@ -1,5 +1,5 @@
-# Created by https://www.toptal.com/developers/gitignore/api/visualstudio,reactnative,react,git,ruby,yarn,node,xcode,android,intellij,fastlane
-# Edit at https://www.toptal.com/developers/gitignore?templates=visualstudio,reactnative,react,git,ruby,yarn,node,xcode,android,intellij,fastlane
+# Created by https://www.toptal.com/developers/gitignore/api/git,node,ruby,yarn,react,xcode,android,fastlane,intellij,sonarqube,reactnative,visualstudio,sonar
+# Edit at https://www.toptal.com/developers/gitignore?templates=git,node,ruby,yarn,react,xcode,android,fastlane,intellij,sonarqube,reactnative,visualstudio,sonar
 
 ### Android ###
 # Gradle files
@@ -577,6 +577,28 @@ build-iPhoneSimulator/
 # Used by RuboCop. Remote config files pulled in from inherit_from directive.
 # .rubocop-https?--*
 
+### SonarQube ###
+# SonarQube ignore files.
+#
+# https://docs.sonarqube.org/display/SCAN/Analyzing+with+SonarQube+Scanner
+# Sonar Scanner working directories
+.sonar/
+.sonarqube/
+.scannerwork/
+.scannerwork
+coverage.out
+/sonar-project.properties
+
+# http://www.sonarlint.org/commandline/
+# SonarLint working directories, configuration files (including credentials)
+.sonarlint/
+
+
+
+### Sonar ###
+#Sonar generated dir
+/.sonar/
+
 ### Xcode ###
 
 
@@ -1004,31 +1026,8 @@ FodyWeavers.xsd
 ### VisualStudio Patch ###
 # Additional files built by Visual Studio
 
-# CocoaPods - Only use to conserve bandwidth / Save time on Pushing
-#           - Also handy if you have a large number of dependant pods
-#           - AS PER https://guides.cocoapods.org/using/using-cocoapods.html NEVER IGNORE THE LOCK FILE
-Pods/
-**/Pods/
-/vendor/bundle/
+# End of https://www.toptal.com/developers/gitignore/api/git,node,ruby,yarn,react,xcode,android,fastlane,intellij,sonarqube,reactnative,visualstudio,sonar
 
-# Temporary files created by Metro to check the health of the file watcher
-.metro-health-check*
-
-### SonarQube ###
-# SonarQube ignore files.
-#
-# https://docs.sonarqube.org/display/SCAN/Analyzing+with+SonarQube+Scanner
-# Sonar Scanner working directories
-.sonar/
-.sonarqube/
-.scannerwork/
-.scannerwork
-coverage.out
-/sonar-project.properties
-
-# http://www.sonarlint.org/commandline/
-# SonarLint working directories, configuration files (including credentials)
-.sonarlint/
 
 #App specific
 /test-reports/jest-html-reporters-attach
