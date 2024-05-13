@@ -1,34 +1,5 @@
-# Created by https://www.toptal.com/developers/gitignore/api/visualstudio,reactnative,react,git,ruby,yarn,node,xcode,android,intellij,fastlane
-# Edit at https://www.toptal.com/developers/gitignore?templates=visualstudio,reactnative,react,git,ruby,yarn,node,xcode,android,intellij,fastlane
-
-### OSX ###
-# General
-.DS_Store
-.AppleDouble
-.LSOverride
-
-# Icon must end with two \r
-Icon
-
-
-# Thumbnails
-._*
-
-# Files that might appear in the root of a volume
-.DocumentRevisions-V100
-.fseventsd
-.Spotlight-V100
-.TemporaryItems
-.Trashes
-.VolumeIcon.icns
-.com.apple.timemachine.donotpresent
-
-# Directories potentially created on remote AFP share
-.AppleDB
-.AppleDesktop
-Network Trash Folder
-Temporary Items
-.apdisk
+# Created by https://www.toptal.com/developers/gitignore/api/git,node,ruby,yarn,react,xcode,android,fastlane,intellij,sonarqube,reactnative,visualstudio,sonar
+# Edit at https://www.toptal.com/developers/gitignore?templates=git,node,ruby,yarn,react,xcode,android,fastlane,intellij,sonarqube,reactnative,visualstudio,sonar
 
 ### Android ###
 # Gradle files
@@ -40,23 +11,6 @@ local.properties
 
 # Log/OS Files
 *.log
-
-### Xcode ###
-## User settings
-xcuserdata/
-
-## Xcode 8 and earlier
-*.xcscmblueprint
-*.xccheckout
-
-### Xcode Patch ###
-*.xcodeproj/*
-!*.xcodeproj/project.pbxproj
-!*.xcodeproj/xcshareddata/
-!*.xcodeproj/project.xcworkspace/
-!*.xcworkspace/contents.xcworkspacedata
-/*.gcno
-**/xcshareddata/WorkspaceSettings.xcsettings
 
 # Android Studio generated files and folders
 captures/
@@ -71,12 +25,6 @@ output.json
 misc.xml
 deploymentTargetDropDown.xml
 render.experimental.xml
-local.properties
-*.iml
-*.hprof
-.cxx/
-*.keystore
-!debug.keystore
 
 # Keystore files
 *.jks
@@ -90,12 +38,6 @@ google-services.json
 
 ### Android Patch ###
 gen-external-apklibs
-
-# node.js
-#
-node_modules/
-npm-debug.log
-yarn-error.log
 
 # Replacement of .externalNativeBuild directories introduced
 # with Android Studio 3.5.
@@ -168,19 +110,18 @@ yarn-error.log
 .idea/**/gradle.xml
 .idea/**/libraries
 
-# Temporary files created by Metro to check the health of the file watcher
-.metro-health-check*
-
-# testing
-/coverage
-
-# Yarn
-.yarn/*
-!.yarn/patches
-!.yarn/plugins
-!.yarn/releases
-!.yarn/sdks
-!.yarn/versions
+# Gradle and Maven with auto-import
+# When using Gradle or Maven with auto-import, you should exclude module files,
+# since they will be recreated, and may cause churn.  Uncomment if using
+# auto-import.
+# .idea/artifacts
+# .idea/compiler.xml
+# .idea/jarRepositories.xml
+# .idea/modules.xml
+# .idea/*.iml
+# .idea/modules
+# *.iml
+# *.ipr
 
 # CMake
 cmake-build-*/
@@ -636,6 +577,28 @@ build-iPhoneSimulator/
 # Used by RuboCop. Remote config files pulled in from inherit_from directive.
 # .rubocop-https?--*
 
+### SonarQube ###
+# SonarQube ignore files.
+#
+# https://docs.sonarqube.org/display/SCAN/Analyzing+with+SonarQube+Scanner
+# Sonar Scanner working directories
+.sonar/
+.sonarqube/
+.scannerwork/
+.scannerwork
+coverage.out
+/sonar-project.properties
+
+# http://www.sonarlint.org/commandline/
+# SonarLint working directories, configuration files (including credentials)
+.sonarlint/
+
+
+
+### Sonar ###
+#Sonar generated dir
+/.sonar/
+
 ### Xcode ###
 
 
@@ -1063,32 +1026,4 @@ FodyWeavers.xsd
 ### VisualStudio Patch ###
 # Additional files built by Visual Studio
 
-# CocoaPods - Only use to conserve bandwidth / Save time on Pushing
-#           - Also handy if you have a large number of dependant pods
-#           - AS PER https://guides.cocoapods.org/using/using-cocoapods.html NEVER IGNORE THE LOCK FILE
-Pods/
-**/Pods/
-/vendor/bundle/
-
-# Temporary files created by Metro to check the health of the file watcher
-.metro-health-check*
-
-### SonarQube ###
-# SonarQube ignore files.
-#
-# https://docs.sonarqube.org/display/SCAN/Analyzing+with+SonarQube+Scanner
-# Sonar Scanner working directories
-.sonar/
-.sonarqube/
-.scannerwork/
-.scannerwork
-coverage.out
-/sonar-project.properties
-
-# http://www.sonarlint.org/commandline/
-# SonarLint working directories, configuration files (including credentials)
-.sonarlint/
-
-#App specific
-/test-reports/jest-html-reporters-attach
-/test-reports/test-report.html
+# End of https://www.toptal.com/developers/gitignore/api/git,node,ruby,yarn,react,xcode,android,fastlane,intellij,sonarqube,reactnative,visualstudio,sonar
