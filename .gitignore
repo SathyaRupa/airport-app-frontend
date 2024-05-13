@@ -1027,3 +1027,8 @@ FodyWeavers.xsd
 # Additional files built by Visual Studio
 
 # End of https://www.toptal.com/developers/gitignore/api/git,node,ruby,yarn,react,xcode,android,fastlane,intellij,sonarqube,reactnative,visualstudio,sonar
+
+
+#App specific
+/test-reports/jest-html-reporters-attach
+/test-reports/test-report.html
