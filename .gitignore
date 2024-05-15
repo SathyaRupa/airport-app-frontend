@@ -1,5 +1,5 @@
-# Created by https://www.toptal.com/developers/gitignore/api/git,node,ruby,yarn,react,xcode,android,fastlane,intellij,sonarqube,reactnative,visualstudio,sonar
-# Edit at https://www.toptal.com/developers/gitignore?templates=git,node,ruby,yarn,react,xcode,android,fastlane,intellij,sonarqube,reactnative,visualstudio,sonar
+# Created by https://www.toptal.com/developers/gitignore/api/git,node,ruby,yarn,react,sonar,xcode,android,fastlane,intellij,sonarqube,reactnative,visualstudio,cocoapods
+# Edit at https://www.toptal.com/developers/gitignore?templates=git,node,ruby,yarn,react,sonar,xcode,android,fastlane,intellij,sonarqube,reactnative,visualstudio,cocoapods
 
 ### Android ###
 # Gradle files
@@ -41,6 +41,14 @@ gen-external-apklibs
 
 # Replacement of .externalNativeBuild directories introduced
 # with Android Studio 3.5.
+
+### CocoaPods ###
+## CocoaPods GitIgnore Template
+
+# CocoaPods - Only use to conserve bandwidth / Save time on Pushing
+#           - Also handy if you have a large number of dependant pods
+#           - AS PER https://guides.cocoapods.org/using/using-cocoapods.html NEVER IGNORE THE LOCK FILE
+Pods/
 
 ### fastlane ###
 # fastlane - A streamlined workflow tool for Cocoa deployment
@@ -577,27 +585,23 @@ build-iPhoneSimulator/
 # Used by RuboCop. Remote config files pulled in from inherit_from directive.
 # .rubocop-https?--*
 
+### Sonar ###
+#Sonar generated dir
+/.sonar/
+
 ### SonarQube ###
 # SonarQube ignore files.
-#
 # https://docs.sonarqube.org/display/SCAN/Analyzing+with+SonarQube+Scanner
 # Sonar Scanner working directories
 .sonar/
 .sonarqube/
 .scannerwork/
-.scannerwork
 coverage.out
-/sonar-project.properties
+sonar-project.properties
 
 # http://www.sonarlint.org/commandline/
 # SonarLint working directories, configuration files (including credentials)
 .sonarlint/
-
-
-
-### Sonar ###
-#Sonar generated dir
-/.sonar/
 
 ### Xcode ###
 
@@ -1026,8 +1030,7 @@ FodyWeavers.xsd
 ### VisualStudio Patch ###
 # Additional files built by Visual Studio
 
-# End of https://www.toptal.com/developers/gitignore/api/git,node,ruby,yarn,react,xcode,android,fastlane,intellij,sonarqube,reactnative,visualstudio,sonar
-
+# End of https://www.toptal.com/developers/gitignore/api/git,node,ruby,yarn,react,sonar,xcode,android,fastlane,intellij,sonarqube,reactnative,visualstudio,cocoapods
 
 #App specific
 /test-reports/jest-html-reporters-attach
