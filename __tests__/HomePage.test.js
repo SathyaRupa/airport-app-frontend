@@ -2,7 +2,7 @@ import Homepage from '../screens/Homepage';
 import {fireEvent, render} from '@testing-library/react-native';
 
 describe('Home page', () => {
-  it('Should render  four buttons', () => {
+  it('Should render title and four buttons', () => {
     const mockNavigation = {
       push: jest.fn(),
     };
