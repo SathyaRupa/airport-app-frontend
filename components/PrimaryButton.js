@@ -1,12 +1,12 @@
 import {StyleSheet} from 'react-native';
 import {Button} from 'react-native-paper';
 
-function Primarybutton({title}) {
-  return (
+function Primarybutton({title,handleOnPress}) {
+  return(
     <Button
       style={styles.button}
       mode="contained"
-      onPress={() => console.log('Pressed')}>
+      onPress={handleOnPress}>
       {title}
     </Button>
   );

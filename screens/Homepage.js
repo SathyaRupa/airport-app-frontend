@@ -1,11 +1,14 @@
 import Primarybutton from '../components/PrimaryButton';
 import {View, Text, StyleSheet} from 'react-native';
-function Homepage() {
+function Homepage({navigation}) {
   return (
     <View style={styles.homepageContainer}>
       <Text style={styles.header}>Airport App</Text>
       <View>
-        <Primarybutton title="Airlines" />
+        <Primarybutton
+          title="Airlines"
+          handleOnPress={() => navigation.push('AirlinesHome')}
+        />
         <Primarybutton title="Aircraft" />
         <Primarybutton title="Gates" />
         <Primarybutton title="Slots" />
