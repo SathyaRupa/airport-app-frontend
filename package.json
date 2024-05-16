@@ -49,7 +49,9 @@
     ],
     "moduleFileExtensions": [
       "jsx",
-      "js"
+      "js",
+      "tsx",
+      "ts"
     ],
     "reporters": [
       "default",
