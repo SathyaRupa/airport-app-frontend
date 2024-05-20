@@ -10,8 +10,8 @@ function App() {
     <>
       <NavigationContainer>
       <stack.Navigator>
-          <stack.Screen name="homepage" component={Homepage} />
-          <stack.Screen name="AirlinesHome" component={AirlinesHome} />
+          <stack.Screen name="Home" component={Homepage} />
+          <stack.Screen name="Airline" component={AirlinesHome} />
         </stack.Navigator>
       </NavigationContainer>
     </>
