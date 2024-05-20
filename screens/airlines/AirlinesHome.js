@@ -8,17 +8,26 @@ function AirlinesHome() {
   const [airlines, setAirlines] = useState([]);
   const [page, setPage] = useState(0);
   const [loading, setLoading] = useState(true);
+  const [allDataLoaded, setAllDataLoaded] = useState(false);
+
   useEffect(() => {
     {
-      airlinesService
-        .fetchAllAirlines(page)
-        .then(response => {
-          setAirlines(prevAirlines => [...prevAirlines, ...response]);
-        })
-        .catch(error => {
-          console.error('Error fetching airlines:', error);
-        })
-        .finally(() => setLoading(false));
+      if (!allDataLoaded) {
+        airlinesService
+          .fetchAllAirlines(page)
+          .then(response => {
+            if (response.length === 0) {
+              setAllDataLoaded(true);
+            }
+            if (!allDataLoaded) {
+              setAirlines(prevAirlines => [...prevAirlines, ...response]);
+            }
+          })
+          .catch(error => {
+            console.error('Error fetching airlines:', error);
+          })
+          .finally(() => setLoading(false));
+      }
     }
   }, [page]);
 
@@ -31,17 +40,20 @@ function AirlinesHome() {
   };
   const icon = (
     <Avatar.Image
-    style={{backgroundColor:'#4D869C'}}
+      style={{backgroundColor: 'transparent'}}
       size={50}
       source={require('../../assets/icons/airlines.png')}
-
     />
   );
   return (
     <FlatList
       data={airlines}
       renderItem={itemData => (
-        <ItemCard  key={itemData.item.id} name={itemData.item.name} icon={icon} />
+        <ItemCard
+          key={itemData.item.id}
+          name={itemData.item.name}
+          icon={icon}
+        />
       )}
       onEndReached={loadMoreAirlines}
       onEndReachedThreshold={0.5}
