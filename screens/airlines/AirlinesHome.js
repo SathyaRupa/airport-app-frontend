@@ -1,29 +1,34 @@
 import {StyleSheet, Text, View} from 'react-native';
 import ItemCard from '../../components/ItemCard';
+import {useEffect, useState} from 'react';
 import airlinesService from '../../helpers/airlinesService';
 
 function AirlinesHome() {
-  // Dummy Data
-  airlinesService.fetchAllAirlines(1)
-  .then(airlines => {
-    console.log(airlines);
-  })
-  .catch(error => {
-    console.error('Error fetching airlines:', error);
-  });
+  const [airlines, setAirlines] = useState([]);
+  useEffect(() => {
+    {
+      airlinesService
+        .fetchAllAirlines()
+        .then(response => {
+          setAirlines(response);
+        })
+        .catch(error => {
+          console.error('Error fetching airlines:', error);
+        });
+    }
+  }, []);
   return (
-    <Text>Hello</Text>
-    // <View style={styles.mainContainer}>
-    //   {airlines.map((airline) => (
-    //     <ItemCard name={airline} />
-    //   ))}
-    // </View>
+    <View style={styles.mainContainer}>
+      {airlines.map((airline) => (
+        <ItemCard name={airline.name} />
+      ))}
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   mainContainer: {
-    padding: 10
+    padding: 10,
   },
 });
 
