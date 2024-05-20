@@ -1,15 +1,23 @@
 import {StyleSheet, Text, View} from 'react-native';
 import ItemCard from '../../components/ItemCard';
+import airlinesService from '../../helpers/airlinesService';
 
 function AirlinesHome() {
   // Dummy Data
-  const airlines = ['ABS', 'Air India', 'Jet Airways'];
+  airlinesService.fetchAllAirlines(1)
+  .then(airlines => {
+    console.log(airlines);
+  })
+  .catch(error => {
+    console.error('Error fetching airlines:', error);
+  });
   return (
-    <View style={styles.mainContainer}>
-      {airlines.map((airline) => (
-        <ItemCard name={airline} />
-      ))}
-    </View>
+    <Text>Hello</Text>
+    // <View style={styles.mainContainer}>
+    //   {airlines.map((airline) => (
+    //     <ItemCard name={airline} />
+    //   ))}
+    // </View>
   );
 }
 

@@ -5,9 +5,9 @@ import {Button, Card, Text} from 'react-native-paper';
 function ItemCard({name}) {
   return (
     <View style={styles.mainCard}>
-      <Card >
+      <Card style={styles.itemCard}>
         <Card.Content>
-          <Text variant="titleLarge">{name}</Text>
+          <Text style= {styles.text}variant="titleLarge">{name}</Text>
         </Card.Content>
       </Card>
     </View>
@@ -20,4 +20,10 @@ styles = StyleSheet.create({
   mainCard: {
     padding: 7,
   },
+  itemCard: {
+    backgroundColor: "#4D869C",
+  },
+  text:{
+    color: 'white'
+  }
 });

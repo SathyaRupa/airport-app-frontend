@@ -17,7 +17,7 @@ export default Primarybutton;
 const styles = StyleSheet.create({
   button: {
     margin: 10,
-    backgroundColor: '#4cb5ed',
+    backgroundColor: '#7AB2B2',
     width: 150,
     height: 40,
   },
