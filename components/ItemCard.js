@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {StyleSheet, View} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import {Button, Card, Text} from 'react-native-paper';
+import {Card, Text} from 'react-native-paper';
 
 function ItemCard({name, icon}) {
   return (

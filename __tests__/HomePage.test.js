@@ -1,6 +1,8 @@
 import Homepage from '../screens/Homepage';
 import {fireEvent, render} from '@testing-library/react-native';
 
+jest.mock('react-native-linear-gradient', () => 'LinearGradient');
+
 describe('Home page', () => {
   it('Should render title and four buttons', () => {
     const mockNavigation = {
@@ -14,7 +16,7 @@ describe('Home page', () => {
     const slotsButton = homePage.queryByText('Slots');
 
     expect(homePage.queryByText('Airport App')).toBeTruthy();
-    
+
     expect(aircraftsButton).toBeTruthy();
     expect(airlinesButton).toBeTruthy();
     expect(slotsButton).toBeTruthy();
@@ -22,6 +24,6 @@ describe('Home page', () => {
 
     fireEvent.press(airlinesButton);
 
-    expect(mockNavigation.push).toHaveBeenCalledWith('AirlinesHome');
+    expect(mockNavigation.push).toHaveBeenCalledWith('Airlines');
   });
 });
