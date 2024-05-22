@@ -1,6 +1,7 @@
 import { Platform } from 'react-native';
 
-export const baseUrl = Platform.OS === 'android' ? 'http://10.0.2.2' : 'http://127.0.0.1';
+export const protocol = "http"
+export const ip = Platform.OS === 'android' ? '10.0.2.2' : '127.0.0.1';
 export const port = "8080"
 
-export default url = baseUrl + ":" + port
+export default url = protocol + "://" + ip + ":" + port
