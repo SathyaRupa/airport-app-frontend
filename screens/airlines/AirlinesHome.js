@@ -15,7 +15,7 @@ function AirlinesHome({navigation}) {
     {
       if (!allDataLoaded) {
         airlinesService
-          .fetchAllAirlines(page)
+          .fetchAll(page)
           .then(response => {
             if (response.length === 0) {
               setAllDataLoaded(true);

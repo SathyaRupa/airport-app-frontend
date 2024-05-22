@@ -5,7 +5,7 @@ import * as Yup from 'yup';
 import Primarybutton from '../../components/PrimaryButton';
 import airlinesService from '../../helpers/airlinesService';
 import Toast from 'react-native-toast-message';
-import { SuccessToast } from '../../components/ToastMessage';
+import {SuccessToast, ErrorToast} from '../../components/ToastMessage';
 
 const validationSchema = Yup.object().shape({
   name: Yup.string()
@@ -22,20 +22,20 @@ const validationSchema = Yup.object().shape({
 });
 
 const CreateAirline = ({navigation}) => {
-
-
   const handleSubmit = async values => {
     values.count = parseInt(values.count);
-    const response = await airlinesService.create(values);
-    console.log(response.data)
-    if (response.status === 201) {
-      SuccessToast(response.data);
-
-      setTimeout(() => {
-        navigation.pop();
-      }, 4000);
-    } else {
-      ErrorToast(response.data)
+    try {
+      const response = await airlinesService.create(values);
+      if (response.status === 201) {
+        SuccessToast(response.data);
+        setTimeout(() => {
+          navigation.pop();
+        }, 4000);
+      } else {
+        ErrorToast(response.data);
+      }
+    } catch (error) {
+      ErrorToast(error);
     }
   };
 

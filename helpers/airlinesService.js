@@ -2,7 +2,7 @@ import axios from "axios"
 import url from "./url"
 
 export default {
-    fetchAllAirlines: async (page) => {
+    fetchAll: async (page) => {
         try{
         const response = await axios.get(`${url}/airlines?page=${page}`)
         return response.data
