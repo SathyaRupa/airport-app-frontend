@@ -9,6 +9,14 @@ export default {
         } catch (error) {
             console.log("Error fetching data: ", error)
         }
+    },
+    create: async (payload) => {
+        try {
+            const response = await axios.post(`http://127.0.0.1:8080/airline`, payload)
+            return response
+        } catch (error) {
+            console.log("Error adding airline: ", error)
+        }
   },
 
   fetchAirlineDetails: async id => {
