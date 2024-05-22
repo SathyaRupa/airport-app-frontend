@@ -3,10 +3,10 @@ import {StyleSheet, TouchableOpacity, View} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import {Card, Text} from 'react-native-paper';
 
-function ItemCard({name, icon}) {
+function ItemCard({name, icon, onPress}) {
   return (
     <View style={styles.mainCard}>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={onPress}>
         <Card style={styles.itemCard}>
           <LinearGradient
             colors={['#4D869C', '#7AB2B2']}
