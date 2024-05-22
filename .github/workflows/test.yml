@@ -19,12 +19,6 @@ jobs:
         with:
           node-version: '22.1.0'
 
-      - name: Set up Java
-        uses: actions/setup-java@v2
-        with:
-          distribution: 'temurin'
-          java-version: '17'
-
       - name: Cache dependencies
         uses: actions/cache@v2
         with:
@@ -45,7 +39,6 @@ jobs:
       - name: Run Snyk security scan
         run: |
           snyk auth ${{ secrets.SNYK_TOKEN }}
-          snyk ignore --id=SNYK-JAVA-ORGJETBRAINSKOTLIN-2393744
           snyk test --all-projects
 
       - name: Run Snyk Monitor
