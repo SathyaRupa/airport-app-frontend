@@ -2,6 +2,8 @@ import Homepage from '../screens/Homepage';
 import {fireEvent, render} from '@testing-library/react-native';
 
 jest.mock('react-native-linear-gradient', () => 'LinearGradient');
+jest.mock('react-native-toast-message', () => 'Toast');
+
 
 describe('Home page', () => {
   it('Should render title and four buttons', () => {

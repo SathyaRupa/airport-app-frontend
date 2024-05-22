@@ -1,5 +1,5 @@
-import axios from "axios"
-import url from "./url"
+import axios from 'axios';
+import url from './url';
 
 export default {
     fetchAll: async (page) => {
