@@ -31,12 +31,12 @@ const CreateAirline = ({navigation}) => {
         SuccessToast(response.data);
         setTimeout(() => {
           navigation.pop();
-        }, 4000);
+        }, 1000);
       } else {
         ErrorToast(response.data);
       }
-    } catch (error) {
-      ErrorToast(error);
+    } catch {
+      ErrorToast();
     }
   };
 
@@ -67,7 +67,7 @@ const CreateAirline = ({navigation}) => {
             placeholder="Number of Aircrafts"
             onChangeText={handleChange('count')}
             value={values.count}
-            keyboardType="numeric"
+            keyboardType='number-pad'
             theme={{
               colors: {
                 primary: '#4D869C',
