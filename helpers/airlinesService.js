@@ -9,7 +9,6 @@ export default {
         } catch (error) {
             console.log("Error fetching data: ", error)
         }
-    }
   },
 
   fetchAirlineDetails: async id => {
