@@ -1,8 +1,14 @@
-import {StyleSheet, FlatList, ActivityIndicator, View} from 'react-native';
+import {
+  StyleSheet,
+  FlatList,
+  ActivityIndicator,
+  View,
+  SafeAreaView,
+} from 'react-native';
 import ItemCard from '../../components/ItemCard';
 import {useEffect, useState} from 'react';
 import airlinesService from '../../helpers/airlinesService';
-import {Avatar, Button} from 'react-native-paper';
+import {Avatar} from 'react-native-paper';
 import CreateButton from '../../components/CreateButton';
 
 function AirlinesHome({navigation}) {
@@ -58,25 +64,27 @@ function AirlinesHome({navigation}) {
       <CreateButton
         handleOnPress={() => {
           setAllDataLoaded(false);
-          setAirlines([])
-          setPage(0)
+          setAirlines([]);
+          setPage(0);
           navigation.push('Create Airline');
         }}
       />
-      <FlatList
-        data={airlines}
-        renderItem={itemData => (
-          <ItemCard
-            key={itemData.item.id}
-            name={itemData.item.name}
-            icon={icon}
-            onPress={() => handlePress(itemData.item.id)}
+      <SafeAreaView style={styles.mainContainer}>
+        <FlatList
+          data={airlines}
+          renderItem={itemData => (
+            <ItemCard
+              key={itemData.item.id}
+              name={itemData.item.name}
+              icon={icon}
+              onPress={() => handlePress(itemData.item.id)}
+            />
+          )}
+          onEndReached={loadMoreAirlines}
+          onEndReachedThreshold={0.5}
+          ListFooterComponent={renderFooter}
         />
-        )}
-        onEndReached={loadMoreAirlines}
-        onEndReachedThreshold={0.5}
-        ListFooterComponent={renderFooter}
-      />
+      </SafeAreaView>
     </View>
   );
 }
@@ -84,6 +92,7 @@ function AirlinesHome({navigation}) {
 const styles = StyleSheet.create({
   mainContainer: {
     padding: 10,
+    marginBottom: 150,
   },
 });
 

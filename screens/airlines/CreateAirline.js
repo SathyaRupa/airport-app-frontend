@@ -1,26 +1,12 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
-import { TextInput } from 'react-native-paper';
+import {TextInput} from 'react-native-paper';
 import {Formik} from 'formik';
-import * as Yup from 'yup';
 import Primarybutton from '../../components/PrimaryButton';
 import airlinesService from '../../helpers/airlinesService';
 import Toast from 'react-native-toast-message';
 import {SuccessToast, ErrorToast} from '../../components/ToastMessage';
-
-const validationSchema = Yup.object().shape({
-  name: Yup.string()
-    .required('Name is required')
-    .matches(
-      /^[a-zA-Z ]+$/,
-      'Name must not contain numbers or special characters',
-    )
-    .min(2, 'Name must be at least 2 characters long'),
-  count: Yup.string()
-    .required('Count is required')
-    .matches(/^[0-9]+$/, 'Count must only contain numbers')
-    .min(1, 'Count must be at least 1'),
-});
+import ValidationSchema from './utils/ValidationSchema';
 
 const CreateAirline = ({navigation}) => {
   const handleSubmit = async values => {
@@ -43,7 +29,7 @@ const CreateAirline = ({navigation}) => {
   return (
     <Formik
       initialValues={{name: '', count: ''}}
-      validationSchema={validationSchema}
+      validationSchema={ValidationSchema}
       onSubmit={handleSubmit}>
       {({handleChange, handleSubmit, values, errors, touched}) => (
         <View style={styles.container}>
@@ -67,7 +53,7 @@ const CreateAirline = ({navigation}) => {
             placeholder="Number of Aircrafts"
             onChangeText={handleChange('count')}
             value={values.count}
-            keyboardType='number-pad'
+            keyboardType="number-pad"
             theme={{
               colors: {
                 primary: '#4D869C',
@@ -107,4 +93,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CreateAirline
+export default CreateAirline;
