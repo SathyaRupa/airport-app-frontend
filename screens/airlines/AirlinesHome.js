@@ -4,7 +4,7 @@ import {useEffect, useState} from 'react';
 import airlinesService from '../../helpers/airlinesService';
 import {Avatar} from 'react-native-paper';
 
-function AirlinesHome() {
+function AirlinesHome({navigation}) {
   const [airlines, setAirlines] = useState([]);
   const [page, setPage] = useState(0);
   const [loading, setLoading] = useState(true);
@@ -38,6 +38,11 @@ function AirlinesHome() {
   const renderFooter = () => {
     return loading ? <ActivityIndicator size="large" color="#4D869C" /> : null;
   };
+
+  const handlePress = id => {
+    navigation.push('Airline Details', {id});
+  };
+
   const icon = (
     <Avatar.Image
       style={{backgroundColor: 'transparent'}}
@@ -53,6 +58,7 @@ function AirlinesHome() {
           key={itemData.item.id}
           name={itemData.item.name}
           icon={icon}
+          onPress={() => handlePress(itemData.item.id)}
         />
       )}
       onEndReached={loadMoreAirlines}
