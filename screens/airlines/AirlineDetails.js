@@ -25,15 +25,12 @@ function AirlineDetails({route}) {
 
   return (
     <View style={styles.container}>
-      <Card mode="elevated">
+      <Card mode="elevated" style={styles.card}>
         <LinearGradient
           colors={['#4D869C', '#7AB2B2']}
-          start={{x: 0, y: 0}}
+          start={{x: 1, y: 0}}
           end={{x: 1, y: 1}}
-          style={{
-            borderRadius: 12,
-            overflow: 'hidden',
-          }}>
+          style={styles.gradient}>
           <Card.Content>
             <View style={styles.content}>
               <Text style={styles.info}>Name: {details.name}</Text>
@@ -48,10 +45,24 @@ function AirlineDetails({route}) {
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: 20,
-    paddingLeft: 5,
-    paddingRight: 5,
-    alignItems: 'stretch',
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  card: {
+    width: 300,
+    height: 200,
+  },
+  gradient: {
+    borderRadius: 12,
+    overflow: 'hidden',
+    width: '100%',
+    height: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  content: {
+    justifyContent: 'center',
   },
   info: {
     fontSize: 18,
