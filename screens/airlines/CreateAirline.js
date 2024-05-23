@@ -1,5 +1,6 @@
 import React from 'react';
-import {View, Text, TextInput, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet} from 'react-native';
+import { TextInput } from 'react-native-paper';
 import {Formik} from 'formik';
 import * as Yup from 'yup';
 import Primarybutton from '../../components/PrimaryButton';
@@ -51,6 +52,11 @@ const CreateAirline = ({navigation}) => {
             placeholder="Airline Name"
             onChangeText={handleChange('name')}
             value={values.name}
+            theme={{
+              colors: {
+                primary: '#4D869C',
+              },
+            }}
           />
           {touched.name && errors.name && (
             <Text style={styles.error}>{errors.name}</Text>
@@ -62,13 +68,18 @@ const CreateAirline = ({navigation}) => {
             onChangeText={handleChange('count')}
             value={values.count}
             keyboardType="numeric"
+            theme={{
+              colors: {
+                primary: '#4D869C',
+              },
+            }}
           />
           {touched.count && errors.count && (
             <Text style={styles.error}>{errors.count}</Text>
           )}
 
           <Primarybutton handleOnPress={handleSubmit} title="Submit" />
-          <Toast ref={ref => Toast.setRef(ref)} />
+          <Toast />
         </View>
       )}
     </Formik>
@@ -81,12 +92,12 @@ const styles = StyleSheet.create({
     padding: 20,
     alignItems: 'center',
     justifyContent: 'center',
+    color: '#FFFFFF',
   },
   input: {
     height: 40,
     width: 300,
-    borderColor: '#4D869C',
-    borderWidth: 1,
+    backgroundColor: 'rgba(77, 134, 156, 0.4)',
     marginBottom: 10,
     paddingLeft: 10,
   },
@@ -96,4 +107,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CreateAirline;
+export default CreateAirline
