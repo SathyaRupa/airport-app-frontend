@@ -30,10 +30,12 @@ function AirlinesHome({navigation}) {
           .finally(() => setLoading(false));
       }
     }
-  }, [page]);
+  }, [page, allDataLoaded]);
 
   const loadMoreAirlines = () => {
-    setPage(prevPage => prevPage + 1);
+    if (!allDataLoaded) {
+      setPage(prevPage => prevPage + 1);
+    }
   };
 
   const renderFooter = () => {
@@ -53,7 +55,14 @@ function AirlinesHome({navigation}) {
   );
   return (
     <View>
-      <CreateButton  handleOnPress={() => navigation.push('Create Airline')}/>
+      <CreateButton
+        handleOnPress={() => {
+          setAllDataLoaded(false);
+          setAirlines([])
+          setPage(0)
+          navigation.push('Create Airline');
+        }}
+      />
       <FlatList
         data={airlines}
         renderItem={itemData => (
