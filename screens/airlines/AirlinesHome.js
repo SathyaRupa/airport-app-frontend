@@ -6,6 +6,7 @@ import {
   SafeAreaView,
 } from 'react-native';
 import ItemCard from '../../components/ItemCard';
+import * as React from 'react';
 import {useEffect, useState} from 'react';
 import airlinesService from '../../helpers/airlinesService';
 import {
@@ -73,6 +74,23 @@ function AirlinesHome({navigation}) {
     navigation.push('Airline Details', {id});
   };
 
+  const handleDelete = (id, name) => {
+    setSelectedAirline({id, name});
+    showModal();
+  };
+
+  const deleteAirlineById = async () => {
+    try {
+      await airlinesService.deleteAirline(selectedAirline.id);
+      setAirlines(prevAirlines =>
+        prevAirlines.filter(airline => airline.id !== selectedAirline.id),
+      );
+      hideModal();
+    } catch (error) {
+      console.error('Error deleting airline:', error);
+    }
+  };
+
   const icon = (
     <Avatar.Image
       style={{backgroundColor: 'transparent'}}
@@ -80,6 +98,7 @@ function AirlinesHome({navigation}) {
       source={require('../../assets/icons/airlines.png')}
     />
   );
+
   return (
     <View>
       <CreateButton
