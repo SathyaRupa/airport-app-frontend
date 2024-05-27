@@ -69,6 +69,10 @@ function AirlinesHome({navigation}) {
     hideModal();
   }
 
+  const handlePress = id => {
+    navigation.push('Airline Details', {id});
+  };
+
   const icon = (
     <Avatar.Image
       style={{backgroundColor: 'transparent'}}

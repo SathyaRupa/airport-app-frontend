@@ -3,7 +3,7 @@ import {StyleSheet, TouchableOpacity, View} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import {Card, Text, Button, IconButton} from 'react-native-paper';
 
-function ItemCard({id, name, icon, handleDelete}) {
+function ItemCard({id, name, icon, handleDelete, onPress}) {
   return (
     <View style={styles.mainCard}>
       <Card style={styles.itemCard}>
@@ -15,23 +15,14 @@ function ItemCard({id, name, icon, handleDelete}) {
             borderRadius: 12,
             overflow: 'hidden',
           }}>
-          <View style={styles.cardContent}>
-            <Card.Content>
-              <View style={styles.content}>
-                {icon}
-                <Text style={styles.text} variant="titleLarge">
-                  {name}
-                </Text>
-              </View>
-            </Card.Content>
-            <Card.Actions>
-              <IconButton
-                icon="delete"
-                size={30}
-                onPress={() => handleDelete(id, name)}
-              />
-            </Card.Actions>
-          </View>
+          <Card.Content>
+            <View style={styles.content}>
+              {icon}
+              <Text style={styles.text} variant="titleLarge">
+                {name}
+              </Text>
+            </View>
+          </Card.Content>
         </LinearGradient>
       </Card>
     </View>
