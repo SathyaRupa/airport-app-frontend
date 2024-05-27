@@ -1,14 +1,18 @@
-import axios from "axios"
-import url from "./url"
+import axios from 'axios';
+import url from './url';
 
 export default {
-    fetchAllAirlines: async (page) => {
-        try{
-        const response = await axios.get(`${url}/airlines?page=${page}`)
-        return response.data
-        } catch (error) {
-            console.log("Error fetching data: ", error)
-        }
+  fetchAll: async page => {
+    try {
+      const response = await axios.get(`${url}/airlines?page=${page}`);
+      return response.data;
+    } catch (error) {
+      console.log('Error fetching data: ', error);
+    }
+  },
+  create: async payload => {
+    const response = await axios.post(`${url}/airline`, payload);
+    return response;
   },
 
   fetchAirlineDetails: async id => {

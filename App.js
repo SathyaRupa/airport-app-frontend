@@ -4,6 +4,7 @@ import Homepage from './screens/Homepage';
 import AirlinesHome from './screens/airlines/AirlinesHome';
 import AirlineDetails from './screens/airlines/AirlineDetails';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import CreateAirline from './screens/airlines/CreateAirline';
 
 const stack = createNativeStackNavigator();
 function App() {
@@ -14,6 +15,7 @@ function App() {
           <stack.Screen name="Home" component={Homepage} />
           <stack.Screen name="Airlines" component={AirlinesHome} />
           <stack.Screen name="Airline Details" component={AirlineDetails} />
+          <stack.Screen name="Create Airline" component={CreateAirline} />
         </stack.Navigator>
       </NavigationContainer>
     </>

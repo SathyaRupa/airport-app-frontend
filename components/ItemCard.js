@@ -3,7 +3,7 @@ import {StyleSheet, TouchableOpacity, View} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import {Card, Text} from 'react-native-paper';
 
-function ItemCard({name, icon, onPress}) {
+export default ItemCard = ({name, icon, onPress}) => {
   return (
     <View style={styles.mainCard}>
       <TouchableOpacity onPress={onPress}>
@@ -29,9 +29,7 @@ function ItemCard({name, icon, onPress}) {
       </TouchableOpacity>
     </View>
   );
-}
-
-export default ItemCard;
+};
 
 styles = StyleSheet.create({
   mainCard: {

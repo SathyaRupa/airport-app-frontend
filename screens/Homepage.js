@@ -1,5 +1,6 @@
 import Primarybutton from '../components/PrimaryButton';
 import {View, Text, StyleSheet} from 'react-native';
+
 function Homepage({navigation}) {
   return (
     <View style={styles.homepageContainer}>

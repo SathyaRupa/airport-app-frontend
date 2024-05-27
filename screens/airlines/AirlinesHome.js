@@ -1,8 +1,15 @@
-import {StyleSheet, FlatList, ActivityIndicator} from 'react-native';
+import {
+  StyleSheet,
+  FlatList,
+  ActivityIndicator,
+  View,
+  SafeAreaView,
+} from 'react-native';
 import ItemCard from '../../components/ItemCard';
 import {useEffect, useState} from 'react';
 import airlinesService from '../../helpers/airlinesService';
 import {Avatar} from 'react-native-paper';
+import CreateButton from '../../components/CreateButton';
 
 function AirlinesHome({navigation}) {
   const [airlines, setAirlines] = useState([]);
@@ -14,7 +21,7 @@ function AirlinesHome({navigation}) {
     {
       if (!allDataLoaded) {
         airlinesService
-          .fetchAllAirlines(page)
+          .fetchAll(page)
           .then(response => {
             if (response.length === 0) {
               setAllDataLoaded(true);
@@ -29,10 +36,12 @@ function AirlinesHome({navigation}) {
           .finally(() => setLoading(false));
       }
     }
-  }, [page]);
+  }, [page, allDataLoaded]);
 
   const loadMoreAirlines = () => {
-    setPage(prevPage => prevPage + 1);
+    if (!allDataLoaded) {
+      setPage(prevPage => prevPage + 1);
+    }
   };
 
   const renderFooter = () => {
@@ -51,26 +60,39 @@ function AirlinesHome({navigation}) {
     />
   );
   return (
-    <FlatList
-      data={airlines}
-      renderItem={itemData => (
-        <ItemCard
-          key={itemData.item.id}
-          name={itemData.item.name}
-          icon={icon}
-          onPress={() => handlePress(itemData.item.id)}
+    <View>
+      <CreateButton
+        handleOnPress={() => {
+          setAllDataLoaded(false);
+          setAirlines([]);
+          setPage(0);
+          navigation.push('Create Airline');
+        }}
+      />
+      <SafeAreaView style={styles.mainContainer}>
+        <FlatList
+          data={airlines}
+          renderItem={itemData => (
+            <ItemCard
+              key={itemData.item.id}
+              name={itemData.item.name}
+              icon={icon}
+              onPress={() => handlePress(itemData.item.id)}
+            />
+          )}
+          onEndReached={loadMoreAirlines}
+          onEndReachedThreshold={0.5}
+          ListFooterComponent={renderFooter}
         />
-      )}
-      onEndReached={loadMoreAirlines}
-      onEndReachedThreshold={0.5}
-      ListFooterComponent={renderFooter}
-    />
+      </SafeAreaView>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   mainContainer: {
     padding: 10,
+    marginBottom: 150,
   },
 });
 
