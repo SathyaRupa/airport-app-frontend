@@ -19,22 +19,20 @@ function AirlinesHome({navigation}) {
 
   useEffect(() => {
     {
-      if (!allDataLoaded) {
-        airlinesService
-          .fetchAll(page)
-          .then(response => {
-            if (response.length === 0) {
-              setAllDataLoaded(true);
-            }
-            if (!allDataLoaded) {
-              setAirlines(prevAirlines => [...prevAirlines, ...response]);
-            }
-          })
-          .catch(error => {
-            console.error('Error fetching airlines:', error);
-          })
-          .finally(() => setLoading(false));
-      }
+      airlinesService
+        .fetchAll(page)
+        .then(response => {
+          if (response.length === 0) {
+            setAllDataLoaded(true);
+          }
+          if (!allDataLoaded) {
+            setAirlines(prevAirlines => [...prevAirlines, ...response]);
+          }
+        })
+        .catch(error => {
+          console.error('Error fetching airlines:', error);
+        })
+        .finally(() => setLoading(false));
     }
   }, [page, allDataLoaded]);
 
