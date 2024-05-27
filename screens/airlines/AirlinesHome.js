@@ -8,7 +8,14 @@ import {
 import ItemCard from '../../components/ItemCard';
 import {useEffect, useState} from 'react';
 import airlinesService from '../../helpers/airlinesService';
-import {Avatar} from 'react-native-paper';
+import {
+  Avatar,
+  PaperProvider,
+  Portal,
+  Modal,
+  Button,
+  IconButton,
+} from 'react-native-paper';
 import CreateButton from '../../components/CreateButton';
 
 function AirlinesHome({navigation}) {
@@ -50,6 +57,18 @@ function AirlinesHome({navigation}) {
     navigation.push('Airline Details', {id});
   };
 
+  const handleDelete = (id, name) => {
+    setSelectedAirline({id, name});
+    showModal();
+  };
+  function deleteAirlineById() {
+    const response = airlinesService.deleteAirline(selectedAirline.id);
+    setAirlines(prevAirlines =>
+      prevAirlines.filter(airline => airline.id !== selectedAirline.id),
+    );
+    hideModal();
+  }
+
   const icon = (
     <Avatar.Image
       style={{backgroundColor: 'transparent'}}
@@ -68,22 +87,62 @@ function AirlinesHome({navigation}) {
         }}
       />
       <SafeAreaView style={styles.mainContainer}>
+        <>
+      <PaperProvider>
         <FlatList
-          data={airlines}
-          renderItem={itemData => (
-            <ItemCard
-              key={itemData.item.id}
-              name={itemData.item.name}
-              icon={icon}
+              data={airlines}
+              renderItem={itemData => (
+                <ItemCard
+                  id={itemData.item.id}
+                  name={itemData.item.name}
+                  icon={icon}
               onPress={() => handlePress(itemData.item.id)}
+                  handleDelete={handleDelete}
             />
-          )}
-          onEndReached={loadMoreAirlines}
-          onEndReachedThreshold={0.5}
-          ListFooterComponent={renderFooter}
-        />
+              )}
+              onEndReached={loadMoreAirlines}
+              onEndReachedThreshold={0.5}
+              ListFooterComponent={renderFooter}
+            />
       </SafeAreaView>
     </View>
+        <Portal>
+          <Modal
+            style={styles.modalBox}
+            visible={visible}
+            onDismiss={hideModal}
+            contentContainerStyle={styles.modalStyle}>
+            <View>
+              <View style={styles.modalTextLine}>
+                <IconButton
+                  icon="close"
+                  size={24}
+                  onPress={hideModal}
+                  style={styles.closeButton}
+                />
+                <Text style={styles.modalText}>
+                  Are you sure to delete the airlines "{selectedAirline.name}"
+                </Text>
+              </View>
+              <View style={styles.modalButtons}>
+                <Button
+                  style={styles.button}
+                  mode="contained"
+                  onPress={deleteAirlineById}>
+                  Yes
+                </Button>
+                <Button
+                  style={styles.button}
+                  mode="contained"
+                  onPress={hideModal}>
+                  No
+                </Button>
+              </View>
+            </View>
+          </Modal>
+        </Portal>
+      </PaperProvider>
+    </>
   );
 }
 
@@ -91,6 +150,39 @@ const styles = StyleSheet.create({
   mainContainer: {
     padding: 10,
     marginBottom: 150,
+  },
+  modalButtons: {
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
+    paddingBottom: 20,
+    paddingTop: 20,
+  },
+  modalStyle: {
+    backgroundColor: 'white',
+    padding: 20,
+  },
+  modalText: {
+    fontSize: 18,
+    padding: 5,
+    color: 'black',
+    textAlignVertical: 'center',
+    textAlign: 'center',
+  },
+  modalBox: {
+    marginLeft: 20,
+    width: 380,
+    height: 120,
+    marginTop: 300,
+  },
+  closeButton: {
+    paddingTop: 15,
+    marginLeft: 320,
+  },
+  button: {
+    margin: 10,
+    backgroundColor: '#7AB2B2',
+    width: 100,
+    height: 40,
   },
 });
 

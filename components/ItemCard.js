@@ -1,21 +1,21 @@
 import * as React from 'react';
 import {StyleSheet, TouchableOpacity, View} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import {Card, Text} from 'react-native-paper';
+import {Card, Text, Button, IconButton} from 'react-native-paper';
 
-export default ItemCard = ({name, icon, onPress}) => {
+function ItemCard({id, name, icon, handleDelete}) {
   return (
     <View style={styles.mainCard}>
-      <TouchableOpacity onPress={onPress}>
-        <Card style={styles.itemCard}>
-          <LinearGradient
-            colors={['#4D869C', '#7AB2B2']}
-            start={{x: 0, y: 0}}
-            end={{x: 1, y: 1}}
-            style={{
-              borderRadius: 12,
-              overflow: 'hidden',
-            }}>
+      <Card style={styles.itemCard}>
+        <LinearGradient
+          colors={['#4D869C', '#7AB2B2']}
+          start={{x: 0, y: 0}}
+          end={{x: 1, y: 1}}
+          style={{
+            borderRadius: 12,
+            overflow: 'hidden',
+          }}>
+          <View style={styles.cardContent}>
             <Card.Content>
               <View style={styles.content}>
                 {icon}
@@ -24,12 +24,19 @@ export default ItemCard = ({name, icon, onPress}) => {
                 </Text>
               </View>
             </Card.Content>
-          </LinearGradient>
-        </Card>
-      </TouchableOpacity>
+            <Card.Actions>
+              <IconButton
+                icon="delete"
+                size={30}
+                onPress={() => handleDelete(id, name)}
+              />
+            </Card.Actions>
+          </View>
+        </LinearGradient>
+      </Card>
     </View>
   );
-};
+}
 
 styles = StyleSheet.create({
   mainCard: {
@@ -49,5 +56,9 @@ styles = StyleSheet.create({
     alignContent: 'flex-start',
     flexDirection: 'row',
     paddingTop: 25,
+  },
+  cardContent: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
 });
