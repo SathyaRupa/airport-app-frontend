@@ -1,9 +1,12 @@
 import * as React from 'react';
 import {StyleSheet, TouchableOpacity, View} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import {Card, Text} from 'react-native-paper';
+import {Card, Text, Button, IconButton} from 'react-native-paper';
+import airlinesService from '../helpers/airlinesService';
 
-export default ItemCard = ({name, icon, onPress}) => {
+function ItemCard({id, name, icon, handleDelete, onPress}) {
+  const airlineName = name.length > 15 ? name.substring(0, 16) + '...' : name;
+
   return (
     <View style={styles.mainCard}>
       <TouchableOpacity onPress={onPress}>
@@ -16,20 +19,30 @@ export default ItemCard = ({name, icon, onPress}) => {
               borderRadius: 12,
               overflow: 'hidden',
             }}>
-            <Card.Content>
-              <View style={styles.content}>
-                {icon}
-                <Text style={styles.text} variant="titleLarge">
-                  {name}
-                </Text>
-              </View>
-            </Card.Content>
+            <View style={styles.cardContent}>
+              <Card.Content>
+                <View style={styles.content}>
+                  {icon}
+                  <Text style={styles.text} variant="titleLarge">
+                    {airlineName}
+                  </Text>
+                </View>
+              </Card.Content>
+              <Card.Actions>
+                <IconButton
+                  icon="delete"
+                  size={30}
+                  onPress={() => handleDelete(id, name)}
+                />
+              </Card.Actions>
+            </View>
           </LinearGradient>
         </Card>
       </TouchableOpacity>
     </View>
   );
-};
+}
+export default ItemCard;
 
 styles = StyleSheet.create({
   mainCard: {
@@ -49,5 +62,9 @@ styles = StyleSheet.create({
     alignContent: 'flex-start',
     flexDirection: 'row',
     paddingTop: 25,
+  },
+  cardContent: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
 });

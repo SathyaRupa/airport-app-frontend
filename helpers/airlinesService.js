@@ -23,4 +23,12 @@ export default {
       console.log('Error fetching data: ', error);
     }
   },
+  deleteAirline: async id => {
+    try {
+      const response = await axios.delete(`${url}/airline/${id}`);
+      return response;
+    } catch (error) {
+      console.log('Error fetching data: ', error);
+    }
+  },
 };
