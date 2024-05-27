@@ -39,7 +39,7 @@ function AirlinesHome({navigation}) {
 
   useEffect(() => {
     {
-      if (!allDataLoaded) {
+      if (!allDataLoaded && isFocused) {
         airlinesService
           .fetchAll(page)
           .then(response => {
@@ -54,7 +54,7 @@ function AirlinesHome({navigation}) {
           .finally(() => setLoading(false));
       }
     }
-  }, [page, allDataLoaded]);
+  }, [page, allDataLoaded, isFocused]);
 
   const loadMoreAirlines = () => {
     if (!allDataLoaded) {
@@ -64,9 +64,9 @@ function AirlinesHome({navigation}) {
 
   useEffect(() => {
     if (isFocused) {
-      setAllDataLoaded(false);
       setAirlines([]);
       setPage(0);
+      setAllDataLoaded(false);
       setLoading(true);
     }
   }, [isFocused]);
