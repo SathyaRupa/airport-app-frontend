@@ -35,7 +35,7 @@ const CreateAirline = ({navigation}) => {
         <View style={styles.container}>
           <TextInput
             style={styles.input}
-            placeholder="Airline Name"
+            placeholder="Airline Name*"
             onChangeText={handleChange('name')}
             value={values.name}
             theme={{

@@ -19,6 +19,7 @@ import {
   Button,
 } from 'react-native-paper';
 import CreateButton from '../../components/CreateButton';
+import {useIsFocused} from '@react-navigation/native';
 import Toast from 'react-native-toast-message';
 
 function AirlinesHome({navigation}) {
@@ -26,6 +27,7 @@ function AirlinesHome({navigation}) {
   const [page, setPage] = useState(0);
   const [loading, setLoading] = useState(true);
   const [allDataLoaded, setAllDataLoaded] = useState(false);
+  const isFocused = useIsFocused();
   const [visible, setVisible] = useState(false);
   const [selectedAirline, setSelectedAirline] = useState({
     id: null,
@@ -36,27 +38,38 @@ function AirlinesHome({navigation}) {
   const hideModal = () => setVisible(false);
 
   useEffect(() => {
-    airlinesService
-      .fetchAll(page)
-      .then(response => {
-        if (response.length === 0) {
-          setAllDataLoaded(true);
-        }
-        if (!allDataLoaded) {
-          setAirlines(prevAirlines => [...prevAirlines, ...response]);
-        }
-      })
-      .catch(error => {
-        console.error('Error fetching airlines:', error);
-      })
-      .finally(() => setLoading(false));
-  }, [page, allDataLoaded]);
+    {
+      if (!allDataLoaded && isFocused) {
+        airlinesService
+          .fetchAll(page)
+          .then(response => {
+            if (response.length === 0) {
+              setAllDataLoaded(true);
+            }
+            setAirlines(prevAirlines => [...prevAirlines, ...response]);
+          })
+          .catch(error => {
+            console.error('Error fetching airlines:', error);
+          })
+          .finally(() => setLoading(false));
+      }
+    }
+  }, [page, allDataLoaded, isFocused]);
 
   const loadMoreAirlines = () => {
     if (!allDataLoaded) {
       setPage(prevPage => prevPage + 1);
     }
   };
+
+  useEffect(() => {
+    if (isFocused) {
+      setAirlines([]);
+      setPage(0);
+      setAllDataLoaded(false);
+      setLoading(true);
+    }
+  }, [isFocused]);
 
   const renderFooter = () => {
     return loading ? <ActivityIndicator size="large" color="#4D869C" /> : null;

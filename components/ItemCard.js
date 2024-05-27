@@ -1,8 +1,7 @@
 import * as React from 'react';
 import {StyleSheet, TouchableOpacity, View} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import {Card, Text, Button, IconButton} from 'react-native-paper';
-import airlinesService from '../helpers/airlinesService';
+import {Card, Text, IconButton} from 'react-native-paper';
 
 function ItemCard({id, name, icon, handleDelete, onPress}) {
   const airlineName = name.length > 15 ? name.substring(0, 16) + '...' : name;
@@ -44,7 +43,7 @@ function ItemCard({id, name, icon, handleDelete, onPress}) {
 }
 export default ItemCard;
 
-styles = StyleSheet.create({
+const styles = StyleSheet.create({
   mainCard: {
     padding: 7,
   },
