@@ -9,39 +9,47 @@ import ItemCard from '../../components/ItemCard';
 import * as React from 'react';
 import {useEffect, useState} from 'react';
 import airlinesService from '../../helpers/airlinesService';
+import {SuccessToast, ErrorToast} from '../../components/ToastMessage';
 import {
   Avatar,
   PaperProvider,
   Portal,
+  Text,
   Modal,
   Button,
-  IconButton,
 } from 'react-native-paper';
 import CreateButton from '../../components/CreateButton';
+import Toast from 'react-native-toast-message';
 
 function AirlinesHome({navigation}) {
   const [airlines, setAirlines] = useState([]);
   const [page, setPage] = useState(0);
   const [loading, setLoading] = useState(true);
   const [allDataLoaded, setAllDataLoaded] = useState(false);
+  const [visible, setVisible] = useState(false);
+  const [selectedAirline, setSelectedAirline] = useState({
+    id: null,
+    name: '',
+  });
+
+  const showModal = () => setVisible(true);
+  const hideModal = () => setVisible(false);
 
   useEffect(() => {
-    {
-      airlinesService
-        .fetchAll(page)
-        .then(response => {
-          if (response.length === 0) {
-            setAllDataLoaded(true);
-          }
-          if (!allDataLoaded) {
-            setAirlines(prevAirlines => [...prevAirlines, ...response]);
-          }
-        })
-        .catch(error => {
-          console.error('Error fetching airlines:', error);
-        })
-        .finally(() => setLoading(false));
-    }
+    airlinesService
+      .fetchAll(page)
+      .then(response => {
+        if (response.length === 0) {
+          setAllDataLoaded(true);
+        }
+        if (!allDataLoaded) {
+          setAirlines(prevAirlines => [...prevAirlines, ...response]);
+        }
+      })
+      .catch(error => {
+        console.error('Error fetching airlines:', error);
+      })
+      .finally(() => setLoading(false));
   }, [page, allDataLoaded]);
 
   const loadMoreAirlines = () => {
@@ -62,31 +70,21 @@ function AirlinesHome({navigation}) {
     setSelectedAirline({id, name});
     showModal();
   };
-  function deleteAirlineById() {
-    const response = airlinesService.deleteAirline(selectedAirline.id);
-    setAirlines(prevAirlines =>
-      prevAirlines.filter(airline => airline.id !== selectedAirline.id),
-    );
-    hideModal();
-  }
-
-  const handlePress = id => {
-    navigation.push('Airline Details', {id});
-  };
-
-  const handleDelete = (id, name) => {
-    setSelectedAirline({id, name});
-    showModal();
-  };
 
   const deleteAirlineById = async () => {
     try {
-      await airlinesService.deleteAirline(selectedAirline.id);
+      const response = await airlinesService.deleteAirline(selectedAirline.id);
+      if (response.status === 200) {
+        SuccessToast('Successfully deleted');
+      } else {
+        ErrorToast(response.data);
+      }
       setAirlines(prevAirlines =>
         prevAirlines.filter(airline => airline.id !== selectedAirline.id),
       );
       hideModal();
     } catch (error) {
+      ErrorToast();
       console.error('Error deleting airline:', error);
     }
   };
@@ -100,53 +98,43 @@ function AirlinesHome({navigation}) {
   );
 
   return (
-    <View>
-      <CreateButton
-        handleOnPress={() => {
-          setAllDataLoaded(false);
-          setAirlines([]);
-          setPage(0);
-          navigation.push('Create Airline');
-        }}
-      />
+    <PaperProvider>
       <SafeAreaView style={styles.mainContainer}>
-        <>
-      <PaperProvider>
+        <CreateButton
+          handleOnPress={() => {
+            setAllDataLoaded(false);
+            setAirlines([]);
+            setPage(0);
+            navigation.push('Create Airline');
+          }}
+        />
+
         <FlatList
-              data={airlines}
-              renderItem={itemData => (
-                <ItemCard
-                  id={itemData.item.id}
-                  name={itemData.item.name}
-                  icon={icon}
+          data={airlines}
+          renderItem={itemData => (
+            <ItemCard
+              id={itemData.item.id}
+              name={itemData.item.name}
+              icon={icon}
               onPress={() => handlePress(itemData.item.id)}
-                  handleDelete={handleDelete}
+              handleDelete={handleDelete}
             />
-              )}
-              onEndReached={loadMoreAirlines}
-              onEndReachedThreshold={0.5}
-              ListFooterComponent={renderFooter}
-            />
-      </SafeAreaView>
-    </View>
+          )}
+          onEndReached={loadMoreAirlines}
+          onEndReachedThreshold={0.5}
+          ListFooterComponent={renderFooter}
+        />
+
         <Portal>
           <Modal
-            style={styles.modalBox}
             visible={visible}
             onDismiss={hideModal}
-            contentContainerStyle={styles.modalStyle}>
+            contentContainerStyle={styles.modalContent}>
             <View>
-              <View style={styles.modalTextLine}>
-                <IconButton
-                  icon="close"
-                  size={24}
-                  onPress={hideModal}
-                  style={styles.closeButton}
-                />
-                <Text style={styles.modalText}>
-                  Are you sure to delete the airlines "{selectedAirline.name}"
-                </Text>
-              </View>
+              <Text style={styles.modalText}>
+                Are you sure you want to delete the airline "
+                {selectedAirline.name}"?
+              </Text>
               <View style={styles.modalButtons}>
                 <Button
                   style={styles.button}
@@ -164,42 +152,32 @@ function AirlinesHome({navigation}) {
             </View>
           </Modal>
         </Portal>
-      </PaperProvider>
-    </>
+        <Toast />
+      </SafeAreaView>
+    </PaperProvider>
   );
 }
 
 const styles = StyleSheet.create({
   mainContainer: {
     padding: 10,
-    marginBottom: 150,
+    flex: 1,
+  },
+  modalContent: {
+    backgroundColor: 'white',
+    padding: 20,
+    marginHorizontal: 20,
+    borderRadius: 10,
+  },
+  modalText: {
+    fontSize: 20,
+    color: 'black',
+    textAlign: 'center',
+    marginBottom: 20,
   },
   modalButtons: {
     flexDirection: 'row',
     justifyContent: 'space-evenly',
-    paddingBottom: 20,
-    paddingTop: 20,
-  },
-  modalStyle: {
-    backgroundColor: 'white',
-    padding: 20,
-  },
-  modalText: {
-    fontSize: 18,
-    padding: 5,
-    color: 'black',
-    textAlignVertical: 'center',
-    textAlign: 'center',
-  },
-  modalBox: {
-    marginLeft: 20,
-    width: 380,
-    height: 120,
-    marginTop: 300,
-  },
-  closeButton: {
-    paddingTop: 15,
-    marginLeft: 320,
   },
   button: {
     margin: 10,

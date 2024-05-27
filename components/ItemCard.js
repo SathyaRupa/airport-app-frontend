@@ -2,8 +2,11 @@ import * as React from 'react';
 import {StyleSheet, TouchableOpacity, View} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import {Card, Text, Button, IconButton} from 'react-native-paper';
+import airlinesService from '../helpers/airlinesService';
 
 function ItemCard({id, name, icon, handleDelete, onPress}) {
+  const airlineName = name.length > 15 ? name.substring(0, 16) + '...' : name;
+
   return (
     <View style={styles.mainCard}>
       <TouchableOpacity onPress={onPress}>
@@ -21,7 +24,7 @@ function ItemCard({id, name, icon, handleDelete, onPress}) {
                 <View style={styles.content}>
                   {icon}
                   <Text style={styles.text} variant="titleLarge">
-                    {name}
+                    {airlineName}
                   </Text>
                 </View>
               </Card.Content>
@@ -39,6 +42,7 @@ function ItemCard({id, name, icon, handleDelete, onPress}) {
     </View>
   );
 }
+export default ItemCard;
 
 styles = StyleSheet.create({
   mainCard: {
