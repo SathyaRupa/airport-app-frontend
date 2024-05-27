@@ -78,6 +78,13 @@ function AirlinesHome({navigation}) {
   const handlePress = id => {
     navigation.push('Airline Details', {id});
   };
+  const handleUpdate = (id, name) => {
+    setSelectedAirline({id, name});
+    setAllDataLoaded(false);
+    setAirlines([]);
+    setPage(0);
+    navigation.push('Update Airline', {id});
+  };
 
   const handleDelete = (id, name) => {
     setSelectedAirline({id, name});
@@ -88,7 +95,7 @@ function AirlinesHome({navigation}) {
     try {
       const response = await airlinesService.deleteAirline(selectedAirline.id);
       if (response.status === 200) {
-        SuccessToast('Successfully deleted');
+        SuccessToast(response.data);
       } else {
         ErrorToast(response.data);
       }
@@ -131,6 +138,7 @@ function AirlinesHome({navigation}) {
               icon={icon}
               onPress={() => handlePress(itemData.item.id)}
               handleDelete={handleDelete}
+              handleUpdate={handleUpdate}
             />
           )}
           onEndReached={loadMoreAirlines}

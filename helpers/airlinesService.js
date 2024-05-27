@@ -23,6 +23,14 @@ export default {
       console.log('Error fetching data: ', error);
     }
   },
+  update: async (payload, id) => {
+    try {
+      const response = await axios.put(`${url}/airline/${id}`, payload);
+      return response;
+    } catch (error) {
+      console.log('Error fetching data: ', error);
+    }
+  },
   deleteAirline: async id => {
     try {
       const response = await axios.delete(`${url}/airline/${id}`);

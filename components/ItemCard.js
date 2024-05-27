@@ -5,7 +5,7 @@ import {Card, Text} from 'react-native-paper';
 import UpdateButton from './UpdateButton';
 import DeleteButton from './DeleteButton';
 
-function ItemCard({id, name, icon, handleDelete, onPress}) {
+function ItemCard({id, name, icon, handleDelete, handleUpdate, onPress}) {
   const airlineName = name.length > 15 ? name.substring(0, 16) + '...' : name;
 
   return (
@@ -32,20 +32,6 @@ function ItemCard({id, name, icon, handleDelete, onPress}) {
               <Card.Actions>
                 <UpdateButton onPress={() => handleUpdate(id, name)} />
                 <DeleteButton onPress={() => handleDelete(id, name)} />
-                {/* <IconButton
-                  icon="pencil"
-                  mode="default"
-                  iconColor="white"
-                  size={30}
-                  onPress={() => handleUpdate(id, name)}
-                />
-                <IconButton
-                  iconColor="white"
-                  icon="delete"
-                  mode="default"
-                  size={30}
-                  onPress={() => handleDelete(id, name)}
-                /> */}
               </Card.Actions>
             </View>
           </LinearGradient>
