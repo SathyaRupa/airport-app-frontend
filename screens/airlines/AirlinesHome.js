@@ -123,6 +123,7 @@ function AirlinesHome({navigation}) {
             setPage(0);
             navigation.push('Create Airline');
           }}
+          testId="create-button"
         />
 
         <FlatList
