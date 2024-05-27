@@ -2,6 +2,7 @@ import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import Homepage from './screens/Homepage';
 import AirlinesHome from './screens/airlines/AirlinesHome';
+import GatesHome from './screens/gates/GatesHome';
 import AirlineDetails from './screens/airlines/AirlineDetails';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import CreateAirline from './screens/airlines/CreateAirline';
@@ -18,6 +19,7 @@ function App() {
           <stack.Screen name="Airline Details" component={AirlineDetails} />
           <stack.Screen name="Create Airline" component={CreateAirline} />
           <stack.Screen name="Update Airline" component={UpdateAirline} />
+          <stack.Screen name="Gates" component={GatesHome} />
         </stack.Navigator>
       </NavigationContainer>
     </>

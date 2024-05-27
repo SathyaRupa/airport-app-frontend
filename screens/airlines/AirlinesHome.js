@@ -131,7 +131,7 @@ function AirlinesHome({navigation}) {
           renderItem={itemData => (
             <ItemCard
               id={itemData.item.id}
-              name={itemData.item.name}
+              value={itemData.item.name}
               icon={icon}
               onPress={() => handlePress(itemData.item.id)}
               handleDelete={handleDelete}
