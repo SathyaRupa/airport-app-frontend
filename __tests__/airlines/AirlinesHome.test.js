@@ -36,9 +36,7 @@ describe('Airlines home - get all airlines', () => {
       {name: 'Jet Airways', count: '6'},
     ]);
     const airlinesHome = render(<AirlinesHome navigation={mockNavigation} />);
-    const itemCard = airlinesHome.queryAllByTestId('item-card');
 
-    expect(itemCard).toBeTruthy();
     await waitFor(() => {
       expect(airlinesHome.getByText('Jet Airways')).toBeTruthy();
     });
