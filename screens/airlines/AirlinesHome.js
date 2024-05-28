@@ -142,6 +142,7 @@ function AirlinesHome({navigation}) {
               testId="item-card"
               handleUpdate={handleUpdate}
               testId="item-card"
+              handleUpdate={handleUpdate}
             />
           )}
           onEndReached={loadMoreAirlines}
