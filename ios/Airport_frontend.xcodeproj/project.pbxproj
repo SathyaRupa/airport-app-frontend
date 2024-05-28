@@ -43,9 +43,10 @@
 		5709B34CF0A7D63546082F79 /* Pods-Airport_frontend.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Airport_frontend.release.xcconfig"; path = "Target Support Files/Pods-Airport_frontend/Pods-Airport_frontend.release.xcconfig"; sourceTree = "<group>"; };
 		5B7EB9410499542E8C5724F5 /* Pods-Airport_frontend-Airport_frontendTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Airport_frontend-Airport_frontendTests.debug.xcconfig"; path = "Target Support Files/Pods-Airport_frontend-Airport_frontendTests/Pods-Airport_frontend-Airport_frontendTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5DCACB8F33CDC322A6C60F78 /* libPods-Airport_frontend.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Airport_frontend.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		7C4E4F2849DDB16AF743DB56 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; name = PrivacyInfo.xcprivacy; path = Airport_frontend/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		7C4E4F2849DDB16AF743DB56 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xml; name = PrivacyInfo.xcprivacy; path = Airport_frontend/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = Airport_frontend/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-Airport_frontend-Airport_frontendTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Airport_frontend-Airport_frontendTests.release.xcconfig"; path = "Target Support Files/Pods-Airport_frontend-Airport_frontendTests/Pods-Airport_frontend-Airport_frontendTests.release.xcconfig"; sourceTree = "<group>"; };
+		90B3934E2C04C85400D1DFDA /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = MaterialCommunityIcons.ttf; path = "../../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -121,6 +122,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				90B3934C2C04C77C00D1DFDA /* Fonts */,
 				13B07FAE1A68108700A75B9A /* Airport_frontend */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* Airport_frontendTests */,
@@ -140,6 +142,14 @@
 				00E356EE1AD99517003FC87E /* Airport_frontendTests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		90B3934C2C04C77C00D1DFDA /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				90B3934E2C04C85400D1DFDA /* MaterialCommunityIcons.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 		BBD78D7AC51CEA395F1C20DB /* Pods */ = {
