@@ -44,7 +44,7 @@ function GatesHome({navigation}) {
     <Avatar.Image
       style={{backgroundColor: 'transparent'}}
       size={50}
-      source={require('../../assets/icons/airlines.png')}
+      source={require('../../assets/icons/gates.png')}
     />
   );
 
