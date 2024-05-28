@@ -38,22 +38,18 @@ function AirlinesHome({navigation}) {
   const hideModal = () => setVisible(false);
 
   useEffect(() => {
-    {
+    async function fetchData() {
       if (!allDataLoaded && isFocused) {
-        airlinesService
-          .fetchAll(page)
-          .then(response => {
-            if (response.length === 0) {
-              setAllDataLoaded(true);
-            }
-            setAirlines(prevAirlines => [...prevAirlines, ...response]);
-          })
-          .catch(error => {
-            console.error('Error fetching airlines:', error);
-          })
-          .finally(() => setLoading(false));
+        const response = await airlinesService.fetchAll(page);
+        if (response.length === 0) {
+          setAllDataLoaded(true);
+          return;
+        }
+        setAirlines(prevAirlines => [...prevAirlines, ...response]);
       }
+      setLoading(false);
     }
+    fetchData();
   }, [page, allDataLoaded, isFocused]);
 
   const loadMoreAirlines = () => {

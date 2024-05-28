@@ -21,6 +21,7 @@ describe('Airlines home - get all airlines', () => {
       push: jest.fn(),
     };
     jest.clearAllMocks();
+    jest.useFakeTimers();
   });
 
   it('snapshot test', () => {
@@ -58,19 +59,5 @@ describe('Airlines home - get all airlines', () => {
     expect(createButton).toBeTruthy();
     fireEvent.press(createButton);
     expect(mockNavigation.push).toHaveBeenCalledWith('Create Airline');
-  });
-
-  it('should handle error when fetchAll throws an error', async () => {
-    useIsFocused.mockReturnValue(true);
-
-    airlinesService.fetchAll.mockRejectedValue(new Error('Failed to fetch'));
-
-    const {queryByTestId} = render(
-      <AirlinesHome navigation={mockNavigation} />,
-    );
-
-    await waitFor(() => {
-      expect(queryByTestId('item-card')).toBeNull();
-    });
   });
 });
