@@ -135,6 +135,7 @@ function AirlinesHome({navigation}) {
               onPress={() => handlePress(itemData.item.id)}
               handleDelete={handleDelete}
               handleUpdate={handleUpdate}
+              testId="item-card"
             />
           )}
           onEndReached={loadMoreAirlines}
