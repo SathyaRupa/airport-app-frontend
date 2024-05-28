@@ -134,6 +134,7 @@ function AirlinesHome({navigation}) {
               icon={icon}
               onPress={() => handlePress(itemData.item.id)}
               handleDelete={handleDelete}
+              handleUpdate={handleUpdate}
             />
           )}
           onEndReached={loadMoreAirlines}
