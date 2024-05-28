@@ -21,7 +21,9 @@
   sonar.projectName=Airport_frontend
   sonar.sources=.
   sonar.sourceEncoding=UTF-8
-  sonar.coverage.exclusions=__tests__/**,**/MainApplication.kt,*.config.js,index.js
+  sonar.test.inclusions=**/*.spec.js,**/*.test.js
+  sonar.javascript.lcov.reportPaths=coverage/lcov.info
+  sonar.javascript.file.suffixes=.js,.jsx
   sonar.login=admin
   sonar.password=<YOUR_PASSWORD>
   sonar.token=<YOUR_TOKEN>
