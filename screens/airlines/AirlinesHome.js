@@ -127,7 +127,6 @@ function AirlinesHome({navigation}) {
             setPage(0);
             navigation.push('Create Airline');
           }}
-          testId="create-button"
         />
 
         <FlatList
@@ -139,8 +138,6 @@ function AirlinesHome({navigation}) {
               icon={icon}
               onPress={() => handlePress(itemData.item.id)}
               handleDelete={handleDelete}
-              handleUpdate={handleUpdate}
-              testId="item-card"
             />
           )}
           onEndReached={loadMoreAirlines}
