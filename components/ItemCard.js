@@ -6,7 +6,6 @@ import UpdateButton from './UpdateButton';
 import DeleteButton from './DeleteButton';
 
 function ItemCard({id, value, icon, handleDelete, handleUpdate, onPress}) {
-  const name = value.length > 15 ? value.substring(0, 16) + '...' : value;
   return (
     <View style={styles.mainCard}>
       <TouchableOpacity onPress={onPress}>
@@ -27,14 +26,14 @@ function ItemCard({id, value, icon, handleDelete, handleUpdate, onPress}) {
                     style={styles.text}
                     numberOfLines={1}
                     ellipsizeMode="tail">
-                    {name}
+                    {value}
                   </Text>
                 </View>
               </Card.Content>
               <Card.Actions>
                 <View style={styles.buttonContainer}>
-                  <UpdateButton onPress={() => handleUpdate(id, name)} />
-                  <DeleteButton onPress={() => handleDelete(id, name)} />
+                  <UpdateButton onPress={() => handleUpdate(id, value)} />
+                  <DeleteButton onPress={() => handleDelete(id, value)} />
                 </View>
               </Card.Actions>
             </View>
