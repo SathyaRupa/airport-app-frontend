@@ -6,7 +6,7 @@ import GatesHome from './screens/gates/GatesHome';
 import AirlineDetails from './screens/airlines/AirlineDetails';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import CreateAirline from './screens/airlines/CreateAirline';
-import UpdateAirline from './screens/UpdateAirline';
+import UpdateAirline from './screens/airlines/UpdateAirline';
 
 const stack = createNativeStackNavigator();
 function App() {
