@@ -1,11 +1,11 @@
 import * as React from 'react';
 import {StyleSheet, TouchableOpacity, View} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import {Card, Text, IconButton} from 'react-native-paper';
+import {Card, Text} from 'react-native-paper';
+import UpdateButton from './UpdateButton';
+import DeleteButton from './DeleteButton';
 
-function ItemCard({id, name, icon, handleDelete, onPress}) {
-  const airlineName = name.length > 15 ? name.substring(0, 16) + '...' : name;
-
+function ItemCard({id, name, icon, handleDelete, handleUpdate, onPress}) {
   return (
     <View style={styles.mainCard}>
       <TouchableOpacity onPress={onPress}>
@@ -22,17 +22,19 @@ function ItemCard({id, name, icon, handleDelete, onPress}) {
               <Card.Content>
                 <View style={styles.content}>
                   {icon}
-                  <Text style={styles.text} variant="titleLarge">
-                    {airlineName}
+                  <Text
+                    style={styles.text}
+                    numberOfLines={1}
+                    ellipsizeMode="tail">
+                    {name}
                   </Text>
                 </View>
               </Card.Content>
               <Card.Actions>
-                <IconButton
-                  icon="delete"
-                  size={30}
-                  onPress={() => handleDelete(id, name)}
-                />
+                <View style={styles.buttonContainer}>
+                  <UpdateButton onPress={() => handleUpdate(id, name)} />
+                  <DeleteButton onPress={() => handleDelete(id, name)} />
+                </View>
               </Card.Actions>
             </View>
           </LinearGradient>
@@ -55,8 +57,12 @@ const styles = StyleSheet.create({
     paddingLeft: 20,
     paddingTop: 8,
     fontWeight: 'bold',
+    fontSize: 20,
+    maxWidth: '75%',
+    marginRight: 0,
   },
   content: {
+    flex: 3,
     height: 100,
     alignContent: 'flex-start',
     flexDirection: 'row',
@@ -65,5 +71,10 @@ const styles = StyleSheet.create({
   cardContent: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+  },
+  buttonContainer: {
+    flex: 2,
+    flexDirection: 'row',
+    marginLeft: -114,
   },
 });

@@ -38,22 +38,18 @@ function AirlinesHome({navigation}) {
   const hideModal = () => setVisible(false);
 
   useEffect(() => {
-    {
+    async function fetchData() {
       if (!allDataLoaded && isFocused) {
-        airlinesService
-          .fetchAll(page)
-          .then(response => {
-            if (response.length === 0) {
-              setAllDataLoaded(true);
-            }
-            setAirlines(prevAirlines => [...prevAirlines, ...response]);
-          })
-          .catch(error => {
-            console.error('Error fetching airlines:', error);
-          })
-          .finally(() => setLoading(false));
+        const response = await airlinesService.fetchAll(page);
+        if (response.length === 0) {
+          setAllDataLoaded(true);
+          return;
+        }
+        setAirlines(prevAirlines => [...prevAirlines, ...response]);
       }
+      setLoading(false);
     }
+    fetchData();
   }, [page, allDataLoaded, isFocused]);
 
   const loadMoreAirlines = () => {
@@ -78,6 +74,13 @@ function AirlinesHome({navigation}) {
   const handlePress = id => {
     navigation.push('Airline Details', {id});
   };
+  const handleUpdate = (id, name) => {
+    setSelectedAirline({id, name});
+    setAllDataLoaded(false);
+    setAirlines([]);
+    setPage(0);
+    navigation.push('Update Airline', {id});
+  };
 
   const handleDelete = (id, name) => {
     setSelectedAirline({id, name});
@@ -88,7 +91,7 @@ function AirlinesHome({navigation}) {
     try {
       const response = await airlinesService.deleteAirline(selectedAirline.id);
       if (response.status === 200) {
-        SuccessToast('Successfully deleted');
+        SuccessToast(response.data);
       } else {
         ErrorToast(response.data);
       }
@@ -131,6 +134,8 @@ function AirlinesHome({navigation}) {
               icon={icon}
               onPress={() => handlePress(itemData.item.id)}
               handleDelete={handleDelete}
+              handleUpdate={handleUpdate}
+              testId="item-card"
             />
           )}
           onEndReached={loadMoreAirlines}
