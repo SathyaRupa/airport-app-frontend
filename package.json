@@ -78,6 +78,11 @@
           "expand": true
         }
       ]
-    ]
+    ],
+    "coverageDirectory": "./coverage/",
+    "collectCoverage": true,
+    "collectCoverageFrom": ["*.{js,jsx}",  "screens/**/*.{js,jsx}",
+      "components/*.{js,jsx}"],
+    "coverageReporters": ["lcov", "text"]
   }
 }
