@@ -1,6 +1,6 @@
-import AirlineForm from '../components/AirlineForm';
-import airlinesService from '../helpers/airlinesService';
-import {SuccessToast, ErrorToast} from '../components/ToastMessage';
+import AirlineForm from '../../components/AirlineForm';
+import airlinesService from '../../helpers/airlinesService';
+import {SuccessToast, ErrorToast} from '../../components/ToastMessage';
 export default function UpdateAirline({route, navigation}) {
   const {id} = route.params;
 

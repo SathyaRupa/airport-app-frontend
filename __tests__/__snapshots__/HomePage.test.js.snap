@@ -373,7 +373,7 @@ exports[`Home page Should render title and four buttons 1`] = `
             {
               "busy": undefined,
               "checked": undefined,
-              "disabled": true,
+              "disabled": false,
               "expanded": undefined,
               "selected": undefined,
             }

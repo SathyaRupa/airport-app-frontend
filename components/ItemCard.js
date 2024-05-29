@@ -5,7 +5,7 @@ import {Card, Text} from 'react-native-paper';
 import UpdateButton from './UpdateButton';
 import DeleteButton from './DeleteButton';
 
-function ItemCard({id, name, icon, handleDelete, handleUpdate, onPress}) {
+function ItemCard({id, value, icon, handleDelete, handleUpdate, onPress}) {
   return (
     <View style={styles.mainCard}>
       <TouchableOpacity onPress={onPress}>
@@ -26,14 +26,14 @@ function ItemCard({id, name, icon, handleDelete, handleUpdate, onPress}) {
                     style={styles.text}
                     numberOfLines={1}
                     ellipsizeMode="tail">
-                    {name}
+                    {value}
                   </Text>
                 </View>
               </Card.Content>
               <Card.Actions>
                 <View style={styles.buttonContainer}>
-                  <UpdateButton onPress={() => handleUpdate(id, name)} />
-                  <DeleteButton onPress={() => handleDelete(id, name)} />
+                  <UpdateButton onPress={() => handleUpdate(id, value)} />
+                  <DeleteButton onPress={() => handleDelete(id, value)} />
                 </View>
               </Card.Actions>
             </View>

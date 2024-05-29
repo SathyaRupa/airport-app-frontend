@@ -11,7 +11,10 @@ function Homepage({navigation}) {
           handleOnPress={() => navigation.push('Airlines')}
         />
         <Primarybutton title="Aircrafts" />
-        <Primarybutton title="Gates" />
+        <Primarybutton
+          title="Gates"
+          handleOnPress={() => navigation.push('Gates')}
+        />
         <Primarybutton title="Slots" />
       </View>
     </View>
