@@ -5,7 +5,8 @@ import {Card, Text} from 'react-native-paper';
 import UpdateButton from './UpdateButton';
 import DeleteButton from './DeleteButton';
 
-function ItemCard({id, name, icon, handleDelete, handleUpdate, onPress}) {
+function ItemCard({id, value, icon, handleDelete, handleUpdate, onPress}) {
+  const name = value.length > 15 ? value.substring(0, 16) + '...' : value;
   return (
     <View style={styles.mainCard}>
       <TouchableOpacity onPress={onPress}>
