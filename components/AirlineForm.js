@@ -1,3 +1,4 @@
+import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import {TextInput} from 'react-native-paper';
 import {Formik} from 'formik';
@@ -5,7 +6,7 @@ import Primarybutton from './PrimaryButton';
 import Toast from 'react-native-toast-message';
 import ValidationSchema from '../screens/airlines/utils/ValidationSchema';
 
-export default function AirlineForm({handleSubmit}) {
+function AirlineForm({handleSubmit}) {
   return (
     <Formik
       initialValues={{name: '', count: ''}}
@@ -72,3 +73,5 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
 });
+
+export default AirlineForm;

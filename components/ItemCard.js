@@ -5,19 +5,24 @@ import {Card, Text} from 'react-native-paper';
 import UpdateButton from './UpdateButton';
 import DeleteButton from './DeleteButton';
 
-function ItemCard({id, value, icon, handleDelete, handleUpdate, onPress}) {
+function ItemCard({
+  id,
+  value,
+  icon,
+  handleDelete,
+  handleUpdate,
+  onPress,
+  testId,
+}) {
   return (
     <View style={styles.mainCard}>
-      <TouchableOpacity onPress={onPress}>
+      <TouchableOpacity onPress={onPress} testID={testId}>
         <Card style={styles.itemCard}>
           <LinearGradient
             colors={['#4D869C', '#7AB2B2']}
             start={{x: 0, y: 0}}
             end={{x: 1, y: 1}}
-            style={{
-              borderRadius: 12,
-              overflow: 'hidden',
-            }}>
+            style={styles.gradient}>
             <View style={styles.cardContent}>
               <Card.Content>
                 <View style={styles.content}>
@@ -76,5 +81,9 @@ const styles = StyleSheet.create({
     flex: 2,
     flexDirection: 'row',
     marginLeft: -114,
+  },
+  gradient: {
+    borderRadius: 12,
+    overflow: 'hidden',
   },
 });

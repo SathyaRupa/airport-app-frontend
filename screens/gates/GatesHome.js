@@ -1,7 +1,7 @@
 import ItemCard from '../../components/ItemCard';
 import * as React from 'react';
 import {useEffect, useState} from 'react';
-import gatesService from '../../helpers/gatesService';
+import gatesService from '../../helpers/GateService';
 import {FlatList, ActivityIndicator} from 'react-native';
 import {Avatar} from 'react-native-paper';
 

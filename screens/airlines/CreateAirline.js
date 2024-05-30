@@ -1,5 +1,5 @@
 import React from 'react';
-import airlinesService from '../../helpers/airlinesService';
+import AirlineService from '../../helpers/AirlineService';
 import {SuccessToast, ErrorToast} from '../../components/ToastMessage';
 import AirlineForm from '../../components/AirlineForm';
 
@@ -7,7 +7,7 @@ const CreateAirline = ({navigation}) => {
   const handleSubmit = async values => {
     values.count = parseInt(values.count);
     try {
-      const response = await airlinesService.create(values);
+      const response = await AirlineService.create(values);
       if (response.status === 201) {
         SuccessToast(response.data);
         setTimeout(() => {

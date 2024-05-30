@@ -1,3 +1,4 @@
+import React from 'react';
 import Primarybutton from '../components/PrimaryButton';
 import {View, Text, StyleSheet} from 'react-native';
 

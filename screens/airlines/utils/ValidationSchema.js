@@ -1,6 +1,6 @@
 import * as Yup from 'yup';
 
-export default ValidationSchema = Yup.object().shape({
+const ValidationSchema = Yup.object().shape({
   name: Yup.string()
     .required('Name is required')
     .matches(
@@ -12,3 +12,5 @@ export default ValidationSchema = Yup.object().shape({
     .matches(/^[0-9]+$/, 'Count must only contain numbers')
     .min(1, 'Count must be at least 1'),
 });
+
+export default ValidationSchema;

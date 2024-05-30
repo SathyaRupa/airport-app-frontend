@@ -1,3 +1,4 @@
+import React from 'react';
 import Homepage from '../screens/Homepage';
 import {fireEvent, render} from '@testing-library/react-native';
 

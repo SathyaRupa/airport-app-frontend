@@ -1,6 +1,7 @@
+import React from 'react';
 import {IconButton} from 'react-native-paper';
 
-export default function DeleteButton({onPress}) {
+function DeleteButton({onPress}) {
   return (
     <IconButton
       iconColor="white"
@@ -8,6 +9,8 @@ export default function DeleteButton({onPress}) {
       mode="default"
       size={30}
       onPress={onPress}
+      testID="delete-icon"
     />
   );
 }
+export default DeleteButton;
