@@ -2,7 +2,7 @@ import * as React from 'react';
 import {StyleSheet, View} from 'react-native';
 import {Button} from 'react-native-paper';
 
-export default CreateButton = ({handleOnPress}) => {
+const CreateButton = ({handleOnPress}) => {
   return (
     <View style={styles.container}>
       <Button style={styles.button} mode="contained" onPress={handleOnPress}>
@@ -22,3 +22,4 @@ const styles = StyleSheet.create({
     backgroundColor: '#7AB2B2',
   },
 });
+export default CreateButton;

@@ -1,7 +1,7 @@
 import React from 'react';
 import {IconButton} from 'react-native-paper';
 
-export default function UpdateButton({onPress}) {
+function UpdateButton({onPress}) {
   return (
     <IconButton
       icon="pencil"
@@ -13,3 +13,4 @@ export default function UpdateButton({onPress}) {
     />
   );
 }
+export default UpdateButton;

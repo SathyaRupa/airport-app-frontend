@@ -4,6 +4,7 @@ import ItemCard from '../../components/ItemCard';
 
 jest.mock('react-native-linear-gradient', () => 'LinearGradient');
 jest.mock('react-native-toast-message', () => 'Toast');
+
 jest.useFakeTimers();
 
 describe('ItemCard Component', () => {

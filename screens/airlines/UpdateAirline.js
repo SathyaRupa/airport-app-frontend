@@ -2,7 +2,7 @@ import React from 'react';
 import AirlineForm from '../../components/AirlineForm';
 import AirlineService from '../../helpers/AirlineService';
 import {SuccessToast, ErrorToast} from '../../components/ToastMessage';
-export default function UpdateAirline({route, navigation}) {
+function UpdateAirline({route, navigation}) {
   const {id} = route.params;
 
   const handleSubmit = async values => {
@@ -23,3 +23,4 @@ export default function UpdateAirline({route, navigation}) {
   };
   return <AirlineForm handleSubmit={handleSubmit} />;
 }
+export default UpdateAirline;
