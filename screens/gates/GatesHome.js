@@ -1,40 +1,48 @@
 import ItemCard from '../../components/ItemCard';
 import * as React from 'react';
 import {useEffect, useState} from 'react';
-import gatesService from '../../helpers/GateService';
+import GateService from '../../helpers/GateService';
 import {FlatList, ActivityIndicator} from 'react-native';
 import {Avatar} from 'react-native-paper';
+import {useIsFocused} from '@react-navigation/native';
 
 function GatesHome({navigation}) {
-  const [gates, setGates] = useState([]);
-  const [page, setPage] = useState(0);
-  const [loading, setLoading] = useState(true);
   const [allDataLoaded, setAllDataLoaded] = useState(false);
+  const [fetchedPages, setFetchedPages] = useState([]);
+  const [gates, setGates] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [page, setPage] = useState(0);
+  const isFocused = useIsFocused();
 
   useEffect(() => {
-    {
-      if (!allDataLoaded) {
-        gatesService
-          .fetchAll(page)
-          .then(response => {
-            if (response.length === 0) {
-              setAllDataLoaded(true);
-            }
-            setGates(prevGates => [...prevGates, ...response]);
-          })
-          .catch(error => {
-            console.error('Error fetching gates:', error);
-          })
-          .finally(() => setLoading(false));
+    async function fetchData() {
+      if (!allDataLoaded && isFocused && !fetchedPages.includes(page)) {
+        const response = await GateService.fetchAll(page);
+        setFetchedPages(prevPages => [...prevPages, page]);
+        if (response.length === 0) {
+          setAllDataLoaded(true);
+        } else {
+          setGates(prevGates => [...prevGates, ...response]);
+        }
       }
+      setLoading(false);
     }
-  }, [page, allDataLoaded]);
+    fetchData();
+  }, [page, allDataLoaded, isFocused]);
 
   const loadMoreGates = () => {
     if (!allDataLoaded) {
       setPage(prevPage => prevPage + 1);
     }
   };
+
+  useEffect(() => {
+    setGates([]);
+    setPage(0);
+    setAllDataLoaded(false);
+    setLoading(true);
+    setFetchedPages([]);
+  }, [isFocused]);
 
   const renderFooter = () => {
     return loading ? <ActivityIndicator size="large" color="#4D869C" /> : null;
@@ -56,6 +64,7 @@ function GatesHome({navigation}) {
           id={itemData.item.id}
           value={'Gate ' + itemData.item.gate_number}
           icon={icon}
+          testId={`item-card-${itemData.index}`}
         />
       )}
       onEndReached={loadMoreGates}
