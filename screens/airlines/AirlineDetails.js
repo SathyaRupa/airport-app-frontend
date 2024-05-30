@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
-import airlinesService from '../../helpers/airlinesService';
+import AirlineService from '../../helpers/AirlineService';
 import {Card} from 'react-native-paper';
 import LinearGradient from 'react-native-linear-gradient';
 
@@ -9,8 +9,7 @@ function AirlineDetails({route}) {
   const [details, setDetails] = useState(null);
 
   useEffect(() => {
-    airlinesService
-      .fetchAirlineDetails(id)
+    AirlineService.fetchAirlineDetails(id)
       .then(response => {
         setDetails(response);
       })

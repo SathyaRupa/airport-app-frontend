@@ -1,5 +1,6 @@
+import React from 'react';
 import AirlineForm from '../../components/AirlineForm';
-import airlinesService from '../../helpers/airlinesService';
+import AirlineService from '../../helpers/AirlineService';
 import {SuccessToast, ErrorToast} from '../../components/ToastMessage';
 export default function UpdateAirline({route, navigation}) {
   const {id} = route.params;
@@ -7,7 +8,7 @@ export default function UpdateAirline({route, navigation}) {
   const handleSubmit = async values => {
     values.count = parseInt(values.count);
     try {
-      const response = await airlinesService.update(values, id);
+      const response = await AirlineService.update(values, id);
       if (response.status === 201) {
         SuccessToast(response.data.message);
         setTimeout(() => {

@@ -8,7 +8,7 @@ import {
 import ItemCard from '../../components/ItemCard';
 import * as React from 'react';
 import {useEffect, useState} from 'react';
-import airlinesService from '../../helpers/airlinesService';
+import AirlineService from '../../helpers/AirlineService';
 import {SuccessToast, ErrorToast} from '../../components/ToastMessage';
 import {
   Avatar,
@@ -27,25 +27,27 @@ function AirlinesHome({navigation}) {
   const [page, setPage] = useState(0);
   const [loading, setLoading] = useState(true);
   const [allDataLoaded, setAllDataLoaded] = useState(false);
-  const isFocused = useIsFocused();
+  const [fetchedPages, setFetchedPages] = useState([]);
   const [visible, setVisible] = useState(false);
   const [selectedAirline, setSelectedAirline] = useState({
     id: null,
     name: '',
   });
+  const isFocused = useIsFocused();
 
   const showModal = () => setVisible(true);
   const hideModal = () => setVisible(false);
 
   useEffect(() => {
     async function fetchData() {
-      if (!allDataLoaded && isFocused) {
-        const response = await airlinesService.fetchAll(page);
+      if (!allDataLoaded && isFocused && !fetchedPages.includes(page)) {
+        const response = await AirlineService.fetchAll(page);
+        setFetchedPages(prevPages => [...prevPages, page]);
         if (response.length === 0) {
           setAllDataLoaded(true);
-          return;
+        } else {
+          setAirlines(prevAirlines => [...prevAirlines, ...response]);
         }
-        setAirlines(prevAirlines => [...prevAirlines, ...response]);
       }
       setLoading(false);
     }
@@ -59,12 +61,11 @@ function AirlinesHome({navigation}) {
   };
 
   useEffect(() => {
-    if (isFocused) {
-      setAirlines([]);
-      setPage(0);
-      setAllDataLoaded(false);
-      setLoading(true);
-    }
+    setAirlines([]);
+    setPage(0);
+    setAllDataLoaded(false);
+    setLoading(true);
+    setFetchedPages([]);
   }, [isFocused]);
 
   const renderFooter = () => {
@@ -76,9 +77,6 @@ function AirlinesHome({navigation}) {
   };
   const handleUpdate = (id, name) => {
     setSelectedAirline({id, name});
-    setAllDataLoaded(false);
-    setAirlines([]);
-    setPage(0);
     navigation.push('Update Airline', {id});
   };
 
@@ -89,7 +87,7 @@ function AirlinesHome({navigation}) {
 
   const deleteAirlineById = async () => {
     try {
-      const response = await airlinesService.deleteAirline(selectedAirline.id);
+      const response = await AirlineService.deleteAirline(selectedAirline.id);
       if (response.status === 200) {
         SuccessToast(response.data);
       } else {
@@ -118,9 +116,6 @@ function AirlinesHome({navigation}) {
       <SafeAreaView style={styles.mainContainer}>
         <CreateButton
           handleOnPress={() => {
-            setAllDataLoaded(false);
-            setAirlines([]);
-            setPage(0);
             navigation.push('Create Airline');
           }}
           testId="create-button"
@@ -136,7 +131,7 @@ function AirlinesHome({navigation}) {
               onPress={() => handlePress(itemData.item.id)}
               handleDelete={handleDelete}
               handleUpdate={handleUpdate}
-              testId="item-card"
+              testId={`item-card-${itemData.index}`}
             />
           )}
           onEndReached={loadMoreAirlines}
@@ -158,13 +153,15 @@ function AirlinesHome({navigation}) {
                 <Button
                   style={styles.button}
                   mode="contained"
-                  onPress={deleteAirlineById}>
+                  onPress={deleteAirlineById}
+                  testID="yes-button">
                   Yes
                 </Button>
                 <Button
                   style={styles.button}
                   mode="contained"
-                  onPress={hideModal}>
+                  onPress={hideModal}
+                  testID="no=button">
                   No
                 </Button>
               </View>

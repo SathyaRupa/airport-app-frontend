@@ -211,7 +211,12 @@ exports[`Airlines home - get all airlines snapshot test 1`] = `
         <View>
           <View
             onLayout={[Function]}
-          />
+          >
+            <ActivityIndicator
+              color="#4D869C"
+              size="large"
+            />
+          </View>
         </View>
       </RCTScrollView>
       <Toast />

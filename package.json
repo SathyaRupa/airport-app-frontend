@@ -57,7 +57,19 @@
       "**/?(*.)+(spec|test).[tj]s?(x)"
     ],
     "transformIgnorePattern": [
-      "node_modules/(?|@react-native|react-native)"
+      "node_modules/(?|@react-native|react-native)",
+      "/node_modules/(?!transpile-me|transpile-me-too).+(js|jsx)$"
+    ],
+    "coveragePathIgnorePatterns": [
+      "node_modules/",
+      ".eslintrc.js",
+      ".prettierrc.js",
+      "babel.config.js",
+      "index.js",
+      "metro.config.js"
+    ],
+    "watchPathIgnorePatterns": [
+      "<rootDir>/test-reports"
     ],
     "watchPathIgnorePatterns": [
       "<rootDir>/test-reports"
@@ -81,8 +93,15 @@
     ],
     "coverageDirectory": "./coverage/",
     "collectCoverage": true,
-    "collectCoverageFrom": ["*.{js,jsx}",  "screens/**/*.{js,jsx}",
-      "components/*.{js,jsx}"],
-    "coverageReporters": ["lcov", "text"]
+    "collectCoverageFrom": [
+      "*.{js,jsx}",
+      "screens/**/*.{js,jsx}",
+      "helpers/*.{js,jsx}",
+      "components/*.{js,jsx}"
+    ],
+    "coverageReporters": [
+      "lcov",
+      "text"
+    ]
   }
 }

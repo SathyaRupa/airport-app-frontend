@@ -1,3 +1,4 @@
+import React from 'react';
 import {IconButton} from 'react-native-paper';
 
 export default function DeleteButton({onPress}) {
@@ -8,6 +9,7 @@ export default function DeleteButton({onPress}) {
       mode="default"
       size={30}
       onPress={onPress}
+      testID="delete-icon"
     />
   );
 }
