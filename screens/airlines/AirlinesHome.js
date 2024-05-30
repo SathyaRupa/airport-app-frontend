@@ -61,11 +61,13 @@ function AirlinesHome({navigation}) {
   };
 
   useEffect(() => {
-    setAirlines([]);
-    setPage(0);
-    setAllDataLoaded(false);
-    setLoading(true);
-    setFetchedPages([]);
+    if (isFocused) {
+      setAirlines([]);
+      setPage(0);
+      setAllDataLoaded(false);
+      setLoading(true);
+      setFetchedPages([]);
+    }
   }, [isFocused]);
 
   const renderFooter = () => {
