@@ -1,20 +1,21 @@
 import React, {useEffect, useState} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
-import AirlineService from '../../helpers/AirlineService';
+import GateService from '../../helpers/GateService';
 import {Card} from 'react-native-paper';
 import LinearGradient from 'react-native-linear-gradient';
 
-function AirlineDetails({route}) {
+function GateDetails({route}) {
   const {id} = route.params;
   const [details, setDetails] = useState(null);
 
   useEffect(() => {
-    AirlineService.fetchAirlineDetails(id)
+    GateService.fetchGateInfo(id)
       .then(response => {
         setDetails(response);
+        console.log('response=', response);
       })
       .catch(error => {
-        console.error('Error fetching airline details:', error);
+        console.error('Error fetching Gate details:', error);
       });
   }, [id]);
 
@@ -32,11 +33,11 @@ function AirlineDetails({route}) {
           style={styles.gradient}>
           <Card.Content>
             <View style={styles.content}>
-              <Text style={styles.info} testID="airline-name">
-                Name: {details.name}
+              <Text style={styles.info}>
+                Gate Number : {details.gate_number}
               </Text>
-              <Text style={styles.info} testID="airline-count">
-                Count: {details.count}
+              <Text style={styles.info}>
+                Floor Number : {details.floor_number}
               </Text>
             </View>
           </Card.Content>
@@ -79,4 +80,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AirlineDetails;
+export default GateDetails;

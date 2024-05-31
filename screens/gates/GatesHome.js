@@ -48,6 +48,10 @@ function GatesHome({navigation}) {
     return loading ? <ActivityIndicator size="large" color="#4D869C" /> : null;
   };
 
+  const handlePress = id => {
+    navigation.push('Gate Details', {id});
+  };
+
   const icon = (
     <Avatar.Image
       style={{backgroundColor: 'transparent'}}
@@ -65,6 +69,7 @@ function GatesHome({navigation}) {
           value={'Gate ' + itemData.item.gate_number}
           icon={icon}
           testId={`item-card-${itemData.index}`}
+          onPress={() => handlePress(itemData.item.id)}
         />
       )}
       onEndReached={loadMoreGates}

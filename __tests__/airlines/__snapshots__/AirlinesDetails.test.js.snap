@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Airlines home - get all Airlines snapshot test 1`] = `
+<Text>
+  No details available.
+</Text>
+`;
