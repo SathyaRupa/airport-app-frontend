@@ -1,0 +1,143 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Gates home - get all Gates snapshot test 1`] = `
+<View
+  style={
+    {
+      "alignItems": "center",
+      "flex": 1,
+      "justifyContent": "center",
+    }
+  }
+>
+  <View
+    collapsable={false}
+    style={
+      {
+        "backgroundColor": "rgba(247, 243, 249, 1)",
+        "borderRadius": 12,
+        "height": 200,
+        "shadowColor": "#000",
+        "shadowOffset": {
+          "height": 1,
+          "width": 0,
+        },
+        "shadowOpacity": 0.15,
+        "shadowRadius": 3,
+        "width": 300,
+      }
+    }
+    testID="card-container-outer-layer"
+  >
+    <View
+      collapsable={false}
+      style={
+        {
+          "backgroundColor": "rgba(247, 243, 249, 1)",
+          "borderRadius": 12,
+          "elevation": 1,
+          "flex": 1,
+          "shadowColor": "#000",
+          "shadowOffset": {
+            "height": 1,
+            "width": 0,
+          },
+          "shadowOpacity": 0.3,
+          "shadowRadius": 1,
+        }
+      }
+      testID="card-container"
+    >
+      <View
+        style={
+          [
+            {
+              "flexShrink": 1,
+            },
+            undefined,
+          ]
+        }
+        testID="card"
+      >
+        <LinearGradient
+          borderRadiusStyles={{}}
+          colors={
+            [
+              "#4D869C",
+              "#7AB2B2",
+            ]
+          }
+          end={
+            {
+              "x": 1,
+              "y": 1,
+            }
+          }
+          index={0}
+          siblings={[]}
+          start={
+            {
+              "x": 1,
+              "y": 0,
+            }
+          }
+          style={
+            {
+              "alignItems": "center",
+              "borderRadius": 12,
+              "height": "100%",
+              "justifyContent": "center",
+              "overflow": "hidden",
+              "width": "100%",
+            }
+          }
+          total={1}
+        >
+          <View
+            style={
+              [
+                {
+                  "paddingHorizontal": 16,
+                },
+                undefined,
+                undefined,
+              ]
+            }
+          >
+            <View
+              style={
+                {
+                  "justifyContent": "center",
+                }
+              }
+            >
+              <Text
+                style={
+                  {
+                    "color": "white",
+                    "fontSize": 18,
+                    "marginBottom": 5,
+                  }
+                }
+              >
+                Gate Number : 
+              </Text>
+              <Text
+                style={
+                  {
+                    "color": "white",
+                    "fontSize": 18,
+                    "marginBottom": 5,
+                  }
+                }
+              >
+                Floor Number : 
+              </Text>
+            </View>
+          </View>
+        </LinearGradient>
+      </View>
+    </View>
+  </View>
+</View>
+`;

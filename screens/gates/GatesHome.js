@@ -37,15 +37,21 @@ function GatesHome({navigation}) {
   };
 
   useEffect(() => {
-    setGates([]);
-    setPage(0);
-    setAllDataLoaded(false);
-    setLoading(true);
-    setFetchedPages([]);
+    if (isFocused) {
+      setGates([]);
+      setPage(0);
+      setAllDataLoaded(false);
+      setLoading(true);
+      setFetchedPages([]);
+    }
   }, [isFocused]);
 
   const renderFooter = () => {
     return loading ? <ActivityIndicator size="large" color="#4D869C" /> : null;
+  };
+
+  const handlePress = id => {
+    navigation.push('Gate Details', {id});
   };
 
   const icon = (
@@ -65,6 +71,7 @@ function GatesHome({navigation}) {
           value={'Gate ' + itemData.item.gate_number}
           icon={icon}
           testId={`item-card-${itemData.index}`}
+          onPress={() => handlePress(itemData.item.id)}
         />
       )}
       onEndReached={loadMoreGates}
