@@ -85,7 +85,7 @@ function SlotsHome({navigation}) {
             id={itemData.item.id}
             value={formatData(itemData.item)}
             icon={icon}
-            testId={`item-card-${itemData.index}`}
+            testId={`slot-card-${itemData.index}`}
           />
         )}
         onEndReached={loadMoreSlots}
