@@ -1,0 +1,234 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SlotsHome page snapshot test 1`] = `
+<View>
+  <View
+    style={
+      {
+        "flexDirection": "row-reverse",
+        "padding": 12,
+      }
+    }
+  >
+    <View
+      collapsable={false}
+      style={
+        {
+          "backgroundColor": "#7AB2B2",
+          "borderRadius": 8,
+          "shadowColor": "#000",
+          "shadowOffset": {
+            "height": 0,
+            "width": 0,
+          },
+          "shadowOpacity": 0,
+          "shadowRadius": 0,
+          "width": 140,
+        }
+      }
+      testID="display-all-container-outer-layer"
+    >
+      <View
+        collapsable={false}
+        style={
+          {
+            "backgroundColor": "#7AB2B2",
+            "borderColor": "rgba(121, 116, 126, 1)",
+            "borderRadius": 8,
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "flex": undefined,
+            "flexDirection": "column",
+            "shadowColor": "#000",
+            "shadowOffset": {
+              "height": 0,
+              "width": 0,
+            },
+            "shadowOpacity": 0,
+            "shadowRadius": 0,
+          }
+        }
+        testID="display-all-container"
+      >
+        <View
+          accessibilityRole="button"
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": false,
+              "expanded": undefined,
+              "selected": false,
+            }
+          }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            [
+              {
+                "overflow": "hidden",
+              },
+              [
+                {
+                  "borderRadius": 8,
+                },
+                {
+                  "width": "100%",
+                },
+              ],
+            ]
+          }
+          testID="display-all"
+        >
+          <View
+            style={
+              [
+                {
+                  "alignItems": "center",
+                  "flexDirection": "row",
+                  "paddingLeft": 4,
+                  "position": "relative",
+                },
+                {
+                  "paddingLeft": 0,
+                },
+                {
+                  "paddingRight": 0,
+                },
+              ]
+            }
+          >
+            <View
+              style={
+                [
+                  {
+                    "alignSelf": "center",
+                    "padding": 4,
+                  },
+                  {
+                    "paddingLeft": 8,
+                    "paddingRight": 0,
+                  },
+                  null,
+                ]
+              }
+            >
+              <Text
+                accessibilityElementsHidden={true}
+                importantForAccessibility="no-hide-descendants"
+                pointerEvents="none"
+                selectable={false}
+                style={
+                  [
+                    {
+                      "backgroundColor": "transparent",
+                    },
+                    {
+                      "color": "rgba(103, 80, 164, 1)",
+                      "fontSize": 18,
+                    },
+                  ]
+                }
+              >
+                □
+              </Text>
+            </View>
+            <Text
+              numberOfLines={1}
+              selectable={false}
+              style={
+                [
+                  {
+                    "textAlign": "left",
+                  },
+                  {
+                    "color": "rgba(28, 27, 31, 1)",
+                    "writingDirection": "ltr",
+                  },
+                  [
+                    {
+                      "fontFamily": "System",
+                      "fontSize": 14,
+                      "fontWeight": "500",
+                      "letterSpacing": 0.1,
+                      "lineHeight": 20,
+                    },
+                    [
+                      {
+                        "marginVertical": 6,
+                        "textAlignVertical": "center",
+                      },
+                      {
+                        "color": "rgba(29, 25, 43, 1)",
+                        "fontFamily": "System",
+                        "fontSize": 14,
+                        "fontWeight": "500",
+                        "letterSpacing": 0.1,
+                        "lineHeight": 20,
+                      },
+                      {
+                        "marginLeft": 8,
+                        "marginRight": 16,
+                      },
+                      {
+                        "color": "white",
+                      },
+                    ],
+                  ],
+                ]
+              }
+            >
+              Display all
+            </Text>
+          </View>
+        </View>
+      </View>
+    </View>
+  </View>
+  <RCTScrollView
+    ListFooterComponent={[Function]}
+    data={[]}
+    getItem={[Function]}
+    getItemCount={[Function]}
+    keyExtractor={[Function]}
+    onContentSizeChange={[Function]}
+    onEndReached={[Function]}
+    onEndReachedThreshold={0.5}
+    onLayout={[Function]}
+    onMomentumScrollBegin={[Function]}
+    onMomentumScrollEnd={[Function]}
+    onScroll={[Function]}
+    onScrollBeginDrag={[Function]}
+    onScrollEndDrag={[Function]}
+    removeClippedSubviews={false}
+    renderItem={[Function]}
+    scrollEventThrottle={0.0001}
+    stickyHeaderIndices={[]}
+    viewabilityConfigCallbackPairs={[]}
+  >
+    <View>
+      <View
+        onLayout={[Function]}
+      />
+    </View>
+  </RCTScrollView>
+</View>
+`;

@@ -67,6 +67,7 @@ function SlotsHome({navigation}) {
           style={[styles.chip, !available ? styles.checked : styles.unchecked]}
           icon="check"
           textStyle={styles.text}
+          testID="display-all"
           onPress={() => {
             setSlots([]);
             setFetchedPages([]);

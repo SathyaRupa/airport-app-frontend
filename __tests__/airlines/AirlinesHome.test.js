@@ -43,16 +43,14 @@ describe('Airlines home - get all airlines', () => {
       {name: 'Jet Airways', count: '6'},
     ]);
     const airlinesHome = render(<AirlinesHome navigation={mockNavigation} />);
-    const itemCard = airlinesHome.queryAllByTestId('item-card-0');
-
-    expect(itemCard).toBeTruthy();
     await waitFor(() => {
+      expect(airlinesHome.queryByTestId('item-card-0')).toBeTruthy();
       expect(AirlineService.fetchAll).toHaveBeenCalledWith(0);
       expect(airlinesHome.getByText('Jet Airways')).toBeTruthy();
     });
   });
 
-  it('should render an item card and naviage to update page when upddate icon is pressed', async () => {
+  it('should render an item card and naviage to update page when update icon is pressed', async () => {
     useIsFocused.mockReturnValue(true);
 
     AirlineService.fetchAll.mockResolvedValueOnce([
