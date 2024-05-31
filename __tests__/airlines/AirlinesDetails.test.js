@@ -1,10 +1,8 @@
 import React from 'react';
-import {fireEvent, render, waitFor, debug} from '@testing-library/react-native';
-import {haveTextContent} from '@testing-library/jest-dom';
+import {render, waitFor} from '@testing-library/react-native';
 import AirlineService from '../../helpers/AirlineService';
 import {useIsFocused} from '@react-navigation/native';
-import AirlinesHome from '../../screens/Airlines/AirlinesHome';
-import AirlineDetails from '../../screens/Airlines/AirlineDetails';
+import AirlineDetails from '../../screens/airlines/AirlineDetails';
 
 jest.mock('react-native-linear-gradient', () => 'LinearGradient');
 jest.mock('@react-navigation/native', () => ({

@@ -1,8 +1,8 @@
 import React from 'react';
-import {fireEvent, render, waitFor} from '@testing-library/react-native';
+import {render, waitFor} from '@testing-library/react-native';
 import GateService from '../../helpers/GateService';
 import {useIsFocused} from '@react-navigation/native';
-import GatesHome from '../../screens/Gates/GatesHome';
+import GatesHome from '../../screens/gates/GatesHome';
 
 jest.mock('react-native-linear-gradient', () => 'LinearGradient');
 jest.mock('@react-navigation/native', () => ({
