@@ -15,7 +15,7 @@ export default {
     return response;
   },
 
-  fetchAirlineDetails: async id => {
+  show: async id => {
     try {
       const response = await axios.get(`${url}/airline/${id}`);
       return response.data;
@@ -31,7 +31,7 @@ export default {
       console.log('Error fetching data: ', error);
     }
   },
-  deleteAirline: async id => {
+  delete: async id => {
     try {
       const response = await axios.delete(`${url}/airline/${id}`);
       return response;

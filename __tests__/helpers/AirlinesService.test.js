@@ -24,7 +24,7 @@ describe('airlines api services', () => {
     axios.get.mockResolvedValueOnce({
       data: [{id: 1, name: 'Jet Airways', count: '6'}],
     });
-    const response = await AirlineService.fetchAirlineDetails(1);
+    const response = await AirlineService.show(1);
     await waitFor(() => {
       expect(response).toEqual([{id: 1, name: 'Jet Airways', count: '6'}]);
     });
@@ -45,13 +45,13 @@ describe('airlines api services', () => {
     });
   });
 
-  it('deleteAirline should return success message for successfule deletion', async () => {
+  it('delete should return success message for successfule deletion', async () => {
     axios.delete.mockResolvedValueOnce({
       data: 'Deleted the airline successfully',
       status: 200,
     });
     const airlineId = 1;
-    const response = await AirlineService.deleteAirline(airlineId);
+    const response = await AirlineService.delete(airlineId);
     await waitFor(() => {
       expect(response).toEqual({
         data: 'Deleted the airline successfully',

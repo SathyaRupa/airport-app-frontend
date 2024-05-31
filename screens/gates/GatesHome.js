@@ -37,11 +37,13 @@ function GatesHome({navigation}) {
   };
 
   useEffect(() => {
-    setGates([]);
-    setPage(0);
-    setAllDataLoaded(false);
-    setLoading(true);
-    setFetchedPages([]);
+    if (isFocused) {
+      setGates([]);
+      setPage(0);
+      setAllDataLoaded(false);
+      setLoading(true);
+      setFetchedPages([]);
+    }
   }, [isFocused]);
 
   const renderFooter = () => {

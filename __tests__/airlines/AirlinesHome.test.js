@@ -10,7 +10,7 @@ jest.mock('@react-navigation/native', () => ({
 }));
 jest.mock('../../helpers/AirlineService', () => ({
   fetchAll: jest.fn(),
-  deleteAirline: jest.fn(),
+  delete: jest.fn(),
 }));
 
 jest.mock('react-native-toast-message', () => 'Toast');
@@ -105,7 +105,7 @@ describe('Airlines home - get all airlines', () => {
       {id: '1', name: 'Jet Airways', count: '6'},
       {id: '2', name: 'Kingfisher Airways', count: '7'},
     ]);
-    AirlineService.deleteAirline.mockResolvedValueOnce({
+    AirlineService.delete.mockResolvedValueOnce({
       data: 'Deleted the airline successfully',
       status: 200,
     });
@@ -124,7 +124,7 @@ describe('Airlines home - get all airlines', () => {
       getByText('Are you sure you want to delete the airline\n "Jet Airways"?'),
     ).toBeTruthy();
     fireEvent.press(getByTestId('yes-button'));
-    expect(AirlineService.deleteAirline).toHaveBeenCalledWith('1');
+    expect(AirlineService.delete).toHaveBeenCalledWith('1');
   });
 
   it('should not render an item card when no data is recieved', async () => {

@@ -6,22 +6,17 @@ import LinearGradient from 'react-native-linear-gradient';
 
 function GateDetails({route}) {
   const {id} = route.params;
-  const [details, setDetails] = useState(null);
+  const [details, setDetails] = useState({});
 
   useEffect(() => {
-    GateService.fetchGateInfo(id)
+    GateService.show(id)
       .then(response => {
         setDetails(response);
-        console.log('response=', response);
       })
       .catch(error => {
         console.error('Error fetching Gate details:', error);
       });
   }, [id]);
-
-  if (!details) {
-    return <Text>No details available.</Text>;
-  }
 
   return (
     <View style={styles.container}>

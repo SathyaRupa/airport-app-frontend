@@ -10,7 +10,7 @@ export default {
       console.log('Error fetching data: ', error);
     }
   },
-  fetchGateInfo: async id => {
+  show: async id => {
     try {
       const response = await axios.get(`${url}/gate/${id}`);
       return response.data;

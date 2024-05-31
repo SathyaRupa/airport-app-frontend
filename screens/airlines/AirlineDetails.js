@@ -6,10 +6,10 @@ import LinearGradient from 'react-native-linear-gradient';
 
 function AirlineDetails({route}) {
   const {id} = route.params;
-  const [details, setDetails] = useState(null);
+  const [details, setDetails] = useState({});
 
   useEffect(() => {
-    AirlineService.fetchAirlineDetails(id)
+    AirlineService.show(id)
       .then(response => {
         setDetails(response);
       })
@@ -17,10 +17,6 @@ function AirlineDetails({route}) {
         console.error('Error fetching airline details:', error);
       });
   }, [id]);
-
-  if (!details) {
-    return <Text>No details available.</Text>;
-  }
 
   return (
     <View style={styles.container}>

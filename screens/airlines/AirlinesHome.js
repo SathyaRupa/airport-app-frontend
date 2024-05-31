@@ -87,9 +87,9 @@ function AirlinesHome({navigation}) {
     showModal();
   };
 
-  const deleteAirlineById = async () => {
+  const deleteById = async () => {
     try {
-      const response = await AirlineService.deleteAirline(selectedAirline.id);
+      const response = await AirlineService.delete(selectedAirline.id);
       if (response.status === 200) {
         SuccessToast(response.data);
       } else {
@@ -155,7 +155,7 @@ function AirlinesHome({navigation}) {
                 <Button
                   style={styles.button}
                   mode="contained"
-                  onPress={deleteAirlineById}
+                  onPress={deleteById}
                   testID="yes-button">
                   Yes
                 </Button>

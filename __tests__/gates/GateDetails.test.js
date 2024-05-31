@@ -11,7 +11,7 @@ jest.mock('@react-navigation/native', () => ({
 }));
 jest.mock('../../helpers/GateService', () => ({
   fetchAll: jest.fn(),
-  fetchGateInfo: jest.fn(),
+  show: jest.fn(),
 }));
 
 jest.mock('react-native-toast-message', () => 'Toast');
@@ -37,30 +37,27 @@ describe('Gates home - get all Gates', () => {
   };
 
   it('snapshot test', () => {
-    GateService.fetchGateInfo.mockResolvedValueOnce([
+    GateService.show.mockResolvedValueOnce([
       {floor_number: '10', gate_number: '17'},
     ]);
     const gateDetails = render(<GateDetails route={mockRoute} />);
     expect(gateDetails).toMatchSnapshot();
   });
 
-  it('should render an item card and navigate to Gate Details page when item card is pressed', async () => {
+  it('should render an Gate Details page along with the values', async () => {
     useIsFocused.mockReturnValue(true);
-    GateService.fetchAll.mockResolvedValueOnce([
-      {id: '1', floor_number: '10', gate_number: '17'},
-      {id: '2', floor_number: '6', gate_number: '10'},
-    ]);
 
-    const {getAllByTestId} = render(<GatesHome navigation={mockNavigation} />);
+    GateService.show.mockResolvedValueOnce({
+      id: '1',
+      floor_number: '6',
+      gate_number: '7',
+    });
+
+    const {getByText} = render(<GateDetails route={mockRoute} />);
 
     await waitFor(() => {
-      const cardButton = getAllByTestId('card');
-      expect(cardButton[0]).toBeTruthy();
-      expect(mockNavigation.push).not.toHaveBeenCalled();
-      fireEvent.press(cardButton[0]);
-    });
-    expect(mockNavigation.push).toHaveBeenCalledWith('Gate Details', {
-      id: '1',
+      expect(getByText('Floor Number : 6')).toBeTruthy();
+      expect(getByText('Gate Number : 7')).toBeTruthy();
     });
   });
 });
