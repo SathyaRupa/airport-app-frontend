@@ -2,6 +2,8 @@ import React from 'react';
 import {render, waitFor} from '@testing-library/react-native';
 import GateService from '../../helpers/GateService';
 import {useIsFocused} from '@react-navigation/native';
+import {Provider as PaperProvider} from 'react-native-paper';
+
 import GatesHome from '../../screens/gates/GatesHome';
 
 jest.mock('react-native-linear-gradient', () => 'LinearGradient');
@@ -34,21 +36,27 @@ describe('Gates home - get all Gates', () => {
 
     expect(gatesHome).toMatchSnapshot();
   });
-
   it('should render an item card', async () => {
     useIsFocused.mockReturnValue(true);
 
     GateService.fetchAll.mockResolvedValueOnce([
-      {floor_number: '10', gate_number: '17'},
+      {id: 1, floor_number: '10', gate_number: '17'},
     ]);
-    const gatesHome = render(<GatesHome navigation={mockNavigation} />);
-    const itemCard = gatesHome.queryAllByTestId('item-card-0');
 
-    expect(itemCard).toBeTruthy();
+    const {getByTestId, getByText, queryByTestId} = render(
+      <PaperProvider>
+        <GatesHome navigation={mockNavigation} />
+      </PaperProvider>,
+    );
+
     await waitFor(() => {
-      expect(GateService.fetchAll).toHaveBeenCalledWith(0);
-      expect(gatesHome.getByText('Gate 17')).toBeTruthy();
+      expect(GateService.fetchAll).toHaveBeenCalledWith(0, '');
+      expect(queryByTestId('item-card-0')).toBeTruthy();
+      expect(getByText('Gate 17')).toBeTruthy();
     });
+
+    const itemCard = getByTestId('item-card-0');
+    expect(itemCard).toBeTruthy();
   });
 
   it('should not render an item card when no data is recieved', async () => {
