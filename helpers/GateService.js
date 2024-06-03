@@ -18,4 +18,8 @@ export default {
       console.log('Error fetching data: ', error);
     }
   },
+  create: async payload => {
+    const response = await axios.post(`${url}/gate`, payload);
+    return response;
+  },
 };
