@@ -21,6 +21,7 @@ import {
 import {useIsFocused} from '@react-navigation/native';
 import CreateButton from '../../components/CreateButton';
 import FilterButton from '../../components/FilterButton';
+import FilterDialog from '../../components/FilterDialog';
 
 function GatesHome({navigation}) {
   const [allDataLoaded, setAllDataLoaded] = useState(false);
@@ -32,7 +33,10 @@ function GatesHome({navigation}) {
   const [filterRender, setFilterRender] = useState(false);
 
   const [visible, setVisible] = React.useState(false);
-  const showDialog = () => setVisible(true);
+  const showDialog = () => {
+    console.log('pressed!!!');
+    setVisible(true);
+  };
   const hideDialog = () => setVisible(false);
 
   const isFocused = useIsFocused();
@@ -101,31 +105,13 @@ function GatesHome({navigation}) {
     <PaperProvider>
       <SafeAreaView style={styles.mainContainer}>
         <View style={styles.headerContainer}>
-          {/* <View style={styles.filterContainer}>
-          <Text style={{textAlignVertical: 'center'}}>Filter by:</Text>
-          <TextInput
-            onChangeText={newText => setFloor(newText)}
-            placeholder=" Floor No"
-            style={{borderRadius: 10}}></TextInput>
-          <Button style={{paddingTop: 10}} onPress={handleFilter}>
-            Submit
-          </Button>
-        </View> */}
           <FilterButton handleOnPress={showDialog} />
-          <Portal>
-            <Dialog visible={visible} onDismiss={hideDialog}>
-              <Dialog.Content>
-                <Text variant="bodyMedium">Filter Floor number</Text>
-                <TextInput
-                  onChangeText={newText => setFloor(newText)}
-                  placeholder=" Floor No"
-                  style={{borderRadius: 10}}></TextInput>
-              </Dialog.Content>
-              <Dialog.Actions>
-                <Button onPress={handleFilter}>Done</Button>
-              </Dialog.Actions>
-            </Dialog>
-          </Portal>
+          <FilterDialog
+            visible={visible}
+            dismiss={hideDialog}
+            setFloor={setFloor}
+            onClick={handleFilter}
+          />
           <CreateButton
             handleOnPress={() => {
               navigation.push('Create Airline');
