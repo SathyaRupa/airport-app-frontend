@@ -5,13 +5,7 @@ import {Button} from 'react-native-paper';
 const CreateButton = ({handleOnPress}) => {
   return (
     <View style={styles.container}>
-      <Button
-        style={styles.button}
-        mode="contained"
-        onPress={() => {
-          console.log('Pressed');
-          handleOnPress;
-        }}>
+      <Button style={styles.button} mode="contained" onPress={handleOnPress}>
         Filter
       </Button>
     </View>

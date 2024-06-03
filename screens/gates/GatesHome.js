@@ -1,7 +1,4 @@
-import ItemCard from '../../components/ItemCard';
-import * as React from 'react';
-import {useEffect, useState} from 'react';
-import GateService from '../../helpers/GateService';
+import React, {useEffect, useState} from 'react';
 import {
   StyleSheet,
   FlatList,
@@ -10,15 +7,10 @@ import {
   SafeAreaView,
   TextInput,
 } from 'react-native';
-import {
-  Avatar,
-  Button,
-  PaperProvider,
-  Text,
-  Portal,
-  Dialog,
-} from 'react-native-paper';
+import {Avatar, PaperProvider} from 'react-native-paper';
 import {useIsFocused} from '@react-navigation/native';
+import ItemCard from '../../components/ItemCard';
+import GateService from '../../helpers/GateService';
 import CreateButton from '../../components/CreateButton';
 import FilterButton from '../../components/FilterButton';
 import FilterDialog from '../../components/FilterDialog';
@@ -31,10 +23,9 @@ function GatesHome({navigation}) {
   const [page, setPage] = useState(0);
   const [floor, setFloor] = useState('');
   const [filterRender, setFilterRender] = useState(false);
+  const [visible, setVisible] = useState(false);
 
-  const [visible, setVisible] = React.useState(false);
   const showDialog = () => {
-    console.log('pressed!!!');
     setVisible(true);
   };
   const hideDialog = () => setVisible(false);
@@ -63,6 +54,18 @@ function GatesHome({navigation}) {
       setPage(prevPage => prevPage + 1);
     }
   };
+  function handleFilter() {
+    if (isFocused) {
+      setGates([]);
+      setPage(0);
+      setAllDataLoaded(false);
+      setLoading(true);
+      setFetchedPages([]);
+    }
+    setFilterRender(true);
+    hideDialog();
+  }
+
   function handleFilter() {
     if (isFocused) {
       setGates([]);
@@ -151,9 +154,21 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
-  filterContainer: {
-    paddingLeft: 15,
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  dialog: {
+    width: 300,
+    alignSelf: 'center',
+    backgroundColor: 'white',
+  },
+  input: {
+    borderBottomColor: 'black',
+    borderBottomWidth: 1,
+    marginBottom: 10,
+    paddingHorizontal: 8,
+    paddingVertical: 4,
   },
 });
