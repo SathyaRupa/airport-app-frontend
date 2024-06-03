@@ -8,6 +8,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import CreateAirline from './screens/airlines/CreateAirline';
 import UpdateAirline from './screens/airlines/UpdateAirline';
 import GateDetails from './screens/gates/GateDetails';
+import SlotsHome from './screens/slots/SlotsHome';
 
 const stack = createNativeStackNavigator();
 function App() {
@@ -22,6 +23,7 @@ function App() {
           <stack.Screen name="Update Airline" component={UpdateAirline} />
           <stack.Screen name="Gates" component={GatesHome} />
           <stack.Screen name="Gate Details" component={GateDetails} />
+          <stack.Screen name="Slots" component={SlotsHome} />
         </stack.Navigator>
       </NavigationContainer>
     </>
