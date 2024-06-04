@@ -1,5 +1,5 @@
 import React from 'react';
-import {render, waitFor} from '@testing-library/react-native';
+import {fireEvent, render, waitFor} from '@testing-library/react-native';
 import GateService from '../../helpers/GateService';
 import {useIsFocused} from '@react-navigation/native';
 import GatesHome from '../../screens/gates/GatesHome';
@@ -58,5 +58,13 @@ describe('Gates home - get all Gates', () => {
     await waitFor(() =>
       expect(gatesHome.queryByText('Jet Airways')).toBeNull(),
     );
+  });
+
+  it('should navigate to Create Gates page when clicked on create', () => {
+    const {getByText} = render(<GatesHome navigation={mockNavigation} />);
+    const createButton = getByText('Create');
+    expect(createButton).toBeTruthy();
+    fireEvent.press(createButton);
+    expect(mockNavigation.push).toHaveBeenCalledWith('Create Gate');
   });
 });
