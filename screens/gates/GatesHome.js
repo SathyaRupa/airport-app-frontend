@@ -2,9 +2,16 @@ import ItemCard from '../../components/ItemCard';
 import * as React from 'react';
 import {useEffect, useState} from 'react';
 import GateService from '../../helpers/GateService';
-import {FlatList, ActivityIndicator} from 'react-native';
-import {Avatar} from 'react-native-paper';
+import {
+  FlatList,
+  ActivityIndicator,
+  SafeAreaView,
+  StyleSheet,
+} from 'react-native';
+import CreateButton from '../../components/CreateButton';
+import {Avatar, PaperProvider} from 'react-native-paper';
 import {useIsFocused} from '@react-navigation/native';
+import Toast from 'react-native-toast-message';
 
 function GatesHome({navigation}) {
   const [allDataLoaded, setAllDataLoaded] = useState(false);
@@ -63,22 +70,39 @@ function GatesHome({navigation}) {
   );
 
   return (
-    <FlatList
-      data={gates}
-      renderItem={itemData => (
-        <ItemCard
-          id={itemData.item.id}
-          value={'Gate ' + itemData.item.gate_number}
-          icon={icon}
-          testId={`item-card-${itemData.index}`}
-          onPress={() => handlePress(itemData.item.id)}
+    <PaperProvider>
+      <SafeAreaView style={styles.mainContainer}>
+        <CreateButton
+          handleOnPress={() => {
+            navigation.push('Create Gate');
+          }}
+          testId="create-button"
         />
-      )}
-      onEndReached={loadMoreGates}
-      onEndReachedThreshold={0.5}
-      ListFooterComponent={renderFooter}
-    />
+
+        <FlatList
+          data={gates}
+          renderItem={itemData => (
+            <ItemCard
+              id={itemData.item.id}
+              value={'Gate ' + itemData.item.gate_number}
+              icon={icon}
+              onPress={() => handlePress(itemData.item.id)}
+              testId={`item-card-${itemData.index}`}
+            />
+          )}
+          onEndReached={loadMoreGates}
+          onEndReachedThreshold={0.5}
+          ListFooterComponent={renderFooter}
+        />
+        <Toast />
+      </SafeAreaView>
+    </PaperProvider>
   );
 }
-
+const styles = StyleSheet.create({
+  mainContainer: {
+    padding: 10,
+    flex: 1,
+  },
+});
 export default GatesHome;
