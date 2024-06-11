@@ -98,6 +98,7 @@ function GatesHome({navigation}) {
               onPress={() => handlePress(itemData.item.id)}
               handleUpdate={handleUpdate}
               testId={`item-card-${itemData.index}`}
+              showDeleteButton={false}
             />
           )}
           onEndReached={loadMoreGates}

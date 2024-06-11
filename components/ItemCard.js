@@ -13,6 +13,7 @@ function ItemCard({
   handleUpdate,
   onPress,
   testId,
+  showDeleteButton = true,
 }) {
   return (
     <View style={styles.mainCard}>
@@ -38,7 +39,9 @@ function ItemCard({
               <Card.Actions>
                 <View style={styles.buttonContainer}>
                   <UpdateButton onPress={() => handleUpdate(id, value)} />
-                  <DeleteButton onPress={() => handleDelete(id, value)} />
+                  {showDeleteButton && (
+                    <DeleteButton onPress={() => handleDelete(id, value)} />
+                  )}
                 </View>
               </Card.Actions>
             </View>
@@ -81,6 +84,8 @@ const styles = StyleSheet.create({
     flex: 2,
     flexDirection: 'row',
     marginLeft: -114,
+    justifyContent: 'flex-end',
+    width: '100%',
   },
   gradient: {
     borderRadius: 12,

@@ -67,4 +67,25 @@ describe('Gates home - get all Gates', () => {
     fireEvent.press(createButton);
     expect(mockNavigation.push).toHaveBeenCalledWith('Create Gate');
   });
+
+  it('should render an item card and naviage to update page when update icon is pressed', async () => {
+    useIsFocused.mockReturnValue(true);
+
+    GateService.fetchAll.mockResolvedValueOnce([
+      {id: '1', gate_number: '78', floor_number: '6'},
+      {id: '2', gate_number: '67', floor_number: '7'},
+    ]);
+
+    const {getAllByTestId} = render(<GatesHome navigation={mockNavigation} />);
+
+    await waitFor(() => {
+      const updateButton = getAllByTestId('update-icon');
+      expect(updateButton[0]).toBeTruthy();
+      expect(mockNavigation.push).not.toHaveBeenCalled();
+      fireEvent.press(updateButton[0]);
+    });
+    expect(mockNavigation.push).toHaveBeenCalledWith('Update Gate', {
+      id: '1',
+    });
+  });
 });
