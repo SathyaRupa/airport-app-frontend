@@ -19,6 +19,10 @@ function GatesHome({navigation}) {
   const [gates, setGates] = useState([]);
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(0);
+  const [selectedGate, setSelectedGate] = useState({
+    id: null,
+    name: '',
+  });
   const isFocused = useIsFocused();
 
   useEffect(() => {
@@ -61,6 +65,11 @@ function GatesHome({navigation}) {
     navigation.push('Gate Details', {id});
   };
 
+  const handleUpdate = (id, name) => {
+    setSelectedGate({id, name});
+    navigation.push('Update Gate', {id});
+  };
+
   const icon = (
     <Avatar.Image
       style={{backgroundColor: 'transparent'}}
@@ -87,6 +96,7 @@ function GatesHome({navigation}) {
               value={'Gate ' + itemData.item.gate_number}
               icon={icon}
               onPress={() => handlePress(itemData.item.id)}
+              handleUpdate={handleUpdate}
               testId={`item-card-${itemData.index}`}
             />
           )}

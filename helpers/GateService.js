@@ -22,4 +22,12 @@ export default {
     const response = await axios.post(`${url}/gate`, payload);
     return response;
   },
+  update: async (payload, id) => {
+    try {
+      const response = await axios.put(`${url}/gate/${id}`, payload);
+      return response;
+    } catch (error) {
+      console.log('Error fetching data: ', error);
+    }
+  },
 };
