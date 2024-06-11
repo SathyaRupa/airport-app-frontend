@@ -12,7 +12,15 @@ function GateForm({handleSubmit}) {
       initialValues={{gateNumber: '', floorNumber: ''}}
       validationSchema={ValidationSchemaGate}
       onSubmit={handleSubmit}>
-      {({handleChange, handleSubmit, values, errors, touched}) => (
+      {({
+        handleChange,
+        handleSubmit,
+        values,
+        errors,
+        touched,
+        isValid,
+        dirty,
+      }) => (
         <View style={styles.container}>
           <TextInput
             style={styles.input}
@@ -46,7 +54,11 @@ function GateForm({handleSubmit}) {
             <Text style={styles.error}>{errors.floorNumber}</Text>
           )}
 
-          <Primarybutton handleOnPress={handleSubmit} title="Submit" />
+          <Primarybutton
+            handleOnPress={handleSubmit}
+            title="Submit"
+            disabled={!dirty || !isValid}
+          />
           <Toast />
         </View>
       )}
