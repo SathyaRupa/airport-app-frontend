@@ -12,7 +12,15 @@ function AirlineForm({handleSubmit}) {
       initialValues={{name: '', count: ''}}
       validationSchema={ValidationSchema}
       onSubmit={handleSubmit}>
-      {({handleChange, handleSubmit, values, errors, touched}) => (
+      {({
+        handleChange,
+        handleSubmit,
+        values,
+        errors,
+        touched,
+        dirty,
+        isValid,
+      }) => (
         <View style={styles.container}>
           <TextInput
             style={styles.input}
@@ -45,7 +53,11 @@ function AirlineForm({handleSubmit}) {
             <Text style={styles.error}>{errors.count}</Text>
           )}
 
-          <Primarybutton handleOnPress={handleSubmit} title="Submit" />
+          <Primarybutton
+            handleOnPress={handleSubmit}
+            title="Submit"
+            disabled={!dirty || !isValid}
+          />
           <Toast />
         </View>
       )}
